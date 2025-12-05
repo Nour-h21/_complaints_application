@@ -1,24 +1,27 @@
-// import 'package:complaints_application/app/di/injection_container.dart';
+import '../../features/login/data/datasources/login_remote_ds.dart';
+import '../../features/login/data/repositories/login_repositry_impl.dart';
+import '../../features/login/domain/usecase/login_usecase.dart';
+import '../../features/login/presentation/bloc/login_bloc.dart';
+import 'injection_container.dart';
 
 Future<void> initLoginModule() async {
 
-  // // Datasources
-  // getIt.registerLazySingleton<LoginRemoteDataSource>(
-  //     () => LoginRemoteDataSourceImpl(getIt()));
+  // Datasources
+  getIt.registerLazySingleton<LoginRemoteDs>(
+      () => LoginRemoteDsImpl(getIt()));
 
-  // getIt.registerLazySingleton<LoginRemoteDataSource>(
+  // getIt.registerLazySingleton<LoginRemoteDs>(
   //   () => LoginRemoteDataSourceImpl(getIt<Dio>(), sl<NetworkChecker>()));
 
+  // Repository
+  getIt.registerLazySingleton(
+      () => LoginRepositoryImpl(getIt<LoginRemoteDs>()));
 
-  // // Repository
-  // getIt.registerLazySingleton<LoginRepository>(
-  //     () => LoginRepositoryImpl(getIt()));
+  // Usecase
+  getIt.registerLazySingleton(
+      () => LoginUsecase(getIt<LoginRepositoryImpl>()));
 
-  // // Usecase
-  // getIt.registerLazySingleton<LoginUseCase>(
-  //     () => LoginUseCase(getIt()));
-
-  // // Bloc
-  // getIt.registerFactory<LoginBloc>(
-  //     () => LoginBloc(getIt()));
+  // Bloc
+  getIt.registerFactory(
+      () => LoginBloc(getIt<LoginUsecase>()));
 }

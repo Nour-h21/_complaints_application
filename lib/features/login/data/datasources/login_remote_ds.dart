@@ -1,29 +1,23 @@
-// import 'package:dio/dio.dart';
-// import '../../../../core/services/network_checker.dart';
-// import '../models/user_model.dart';
+import 'package:dio/dio.dart';
 
-abstract class LoginRemoteDataSource {
-//   Future<UserModel> login(String email, String password);
-// }
+import '../models/login_model.dart';
 
-// class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
-//   final Dio dio;
-//   final NetworkChecker networkChecker;
+abstract class LoginRemoteDs {
+  Future<LoginModel> login(Map<String, dynamic> body);
+}
 
-//   LoginRemoteDataSourceImpl(this.dio, this.networkChecker);
+class LoginRemoteDsImpl implements LoginRemoteDs {
+  final Dio dio;
 
-//   @override
-//   Future<UserModel> login(String email, String password) async {
-//     if (!await networkChecker.isConnected) {
-//       throw Exception("لا يوجد اتصال بالإنترنت");
-//     }
+  LoginRemoteDsImpl(this.dio,);
 
-//     final response = await dio.post("login", data: {
-//       "email": email,
-//       "password": password,
-//     });
+  @override
+  Future<LoginModel> login(Map<String, dynamic> body) async {
+    // if (!await networkChecker.isConnected) {
+    //   throw Exception("لا يوجد اتصال بالإنترنت");
+    // }
 
-//     return UserModel.fromJson(response.data);
-//   }
-// }
+    final response = await dio.post("signin", data: body);
+    return LoginModel.fromJson(response.data);
+  }
 }

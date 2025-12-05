@@ -1,3 +1,4 @@
+import 'package:complaints_application/app/routes/router.dart';
 import 'package:flutter/material.dart';
 
 import 'app/di/injection_container.dart' as di;
@@ -8,7 +9,14 @@ void main() async {
 
   // استدعاء DI الأساسي
   await di.init();
-  runApp(const MyApp());
+  runApp( 
+    // DevicePreview(
+    //   enabled: true, 
+    //   builder: (context) => const MyApp(),
+    // ),
+    const MyApp(),
+    );
+
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +25,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    return MaterialApp(
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: true,
+      // locale: DevicePreview.locale(context),
+      // builder: DevicePreview.appBuilder,
+      routerConfig: router,
     );
   }
 }

@@ -1,10 +1,25 @@
-import 'package:flutter/material.dart';
+class LoginEntity {
+  final int id;
+  final int roleId;
+  final String name;
+  final String? email;
+  final String? phone;
+  final String photo;
+  final int points;
+  final int? genderId;
+  final bool isVerified;
+  final String token;
 
-class LoginEntity extends StatelessWidget {
-  const LoginEntity({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+  LoginEntity({
+    required this.id,
+    required this.roleId,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.photo,
+    required this.points,
+    required this.genderId,
+    required this.isVerified,
+    required this.token,
+  });
 }

@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
+import '../entities/login_entity.dart';
 
-class LoginRepositry extends StatelessWidget {
-  const LoginRepositry({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+abstract class LoginRepository {
+  Future<LoginEntity> login({
+    required String emailOrPhone,
+    required String password,
+  });
 }

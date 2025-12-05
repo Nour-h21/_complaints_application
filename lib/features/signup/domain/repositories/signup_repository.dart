@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import '../entities/signup_entity.dart';
 
-class SignupRepository extends StatelessWidget {
-  const SignupRepository({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+abstract class SignupRepository {
+  Future<SignupEntity> signup({
+    required String name,
+    required String emailOrPhone,
+    required String password,
+    required String confirmPassword,
+  });
 }

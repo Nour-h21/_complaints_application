@@ -1,10 +1,18 @@
-import 'package:flutter/material.dart';
+import '../entities/login_entity.dart';
+import '../repositories/login_repositry.dart';
 
-class LoginUsecase extends StatelessWidget {
-  const LoginUsecase({super.key});
+class LoginUsecase {
+  final LoginRepository repository;
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+  LoginUsecase(this.repository);
+
+  Future<LoginEntity> call({
+    required String emailOrPhone,
+    required String password,
+    }) async {
+    return await repository.login(
+      emailOrPhone: emailOrPhone,
+      password: password,
+    );
   }
 }

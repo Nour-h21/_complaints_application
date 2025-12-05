@@ -1,10 +1,22 @@
-import 'package:flutter/material.dart';
+import '../repositories/signup_repository.dart';
+import '../entities/signup_entity.dart';
 
-class SignupUsecase extends StatelessWidget {
-  const SignupUsecase({super.key});
+class SignupUsecase {
+  final SignupRepository repository;
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+  SignupUsecase(this.repository);
+
+  Future<SignupEntity> call({
+    required String name,
+    required String emailOrPhone,
+    required String password,
+    required String confirmPassword,
+  }) async {
+    return await repository.signup(
+      name: name,
+      emailOrPhone: emailOrPhone,
+      password: password,
+      confirmPassword: confirmPassword,
+    );
   }
 }

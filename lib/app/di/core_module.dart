@@ -19,10 +19,10 @@ dio.interceptors.add(
     onRequest: (options, handler) async {
       // Endpoints لا تحتاج توكن
       const authFreeEndpoints = [
-        "login",
+        "signin",
         "register",
-        "verify-code",
-        "forgot-password",
+        "checkOtpCode",
+        "resendOtp",
       ];
 
       // إذا الـ endpoint موجود ضمن القائمة → ما نضيف توكن
