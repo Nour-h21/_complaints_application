@@ -33,7 +33,7 @@ dio.interceptors.add(
       // غير هيك → نضيف التوكن
       final token = await getIt<StorageService>().getToken();
       if (token != null && token.isNotEmpty) {
-        options.headers['Authorization'] = 'Bearer $token';
+        options.headers['Authorization'] = 'Bearer 1|EqwdbI3diHdVXpg1Njap6hXmgTyDfov6CVEOYddd22ca1608';
       }
 
       return handler.next(options);

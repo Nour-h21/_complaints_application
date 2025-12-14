@@ -17,4 +17,9 @@ class AppTexts {
   static String verification = 'التحقق';
   static String verificationCode = 'أدخل رمز التحقق';
   static String enterVerificationCode = 'أدخل رمز التحقق المكون من 6 أرقام الذي أرسلناه إلى بريدك أو الواتساب الخاص بك';
+  static String list = "الشكاوي\n          الخاصة بي";
+  static String details = "تفاصيل \n         الشكوى";
+  static String direction = "جهة الشكوى :";
+  static String type =  "نوع الشكوى :";
+  static String addComplaint =  "تقديم شكوى";
 }

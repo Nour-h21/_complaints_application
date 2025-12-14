@@ -9,4 +9,7 @@ class AppColors{
   static Color armyGreen =  const Color.fromARGB(255, 71, 90, 71);
   static Color armyGreen2 = const Color.fromARGB(255, 81, 96, 81);
   static Color primaryColor = Colors.white70;
+  static Color yellow = const Color.fromARGB(255, 250, 243, 184);
+  static Color black = const Color.fromARGB(255, 0, 17, 8);
+  static Color greenWithShade = Colors.green.shade100;
 }
