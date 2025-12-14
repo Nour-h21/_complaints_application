@@ -35,7 +35,6 @@ class Signup extends StatelessWidget {
             // show error
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message)),
-              
             );
             print(state.message);
           } else if (state is SignupSuccess) {
@@ -118,10 +117,10 @@ class Signup extends StatelessWidget {
                       if (_formKey.currentState!.validate()) {
                         context.read<SignupBloc>().add(
                           SubmitSignupEvent(
-                            name: name.text.trim(),
-                            emailOrPhone: emailOrPhone.text.trim(),
-                            password: password.text.trim(),
-                            confirmPassword: comfirmPassword.text.trim(),
+                            name: name.text,
+                            emailOrPhone: emailOrPhone.text,
+                            password: password.text,
+                            confirmPassword: comfirmPassword.text,
                           ),
                         );
                       }

@@ -18,5 +18,6 @@ class SignupUsecase {
       password: password,
       confirmPassword: confirmPassword,
     );
+  
   }
 }

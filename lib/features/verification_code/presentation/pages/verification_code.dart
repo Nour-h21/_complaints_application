@@ -92,7 +92,7 @@ class VerificationCode extends StatelessWidget {
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(15),
                           fieldHeight: SizeConfig.h(52),
-                          fieldWidth: SizeConfig.w(42),
+                          fieldWidth: SizeConfig.w(42),  
                           inactiveColor: Colors.transparent,
                           selectedColor: Colors.transparent,
                           activeColor: Colors.transparent,

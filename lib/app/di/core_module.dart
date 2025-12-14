@@ -19,8 +19,8 @@ dio.interceptors.add(
     onRequest: (options, handler) async {
       // Endpoints لا تحتاج توكن
       const authFreeEndpoints = [
-        "signin",
         "register",
+        "signin",
         "checkOtpCode",
         "resendOtp",
       ];

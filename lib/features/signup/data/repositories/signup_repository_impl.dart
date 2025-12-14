@@ -23,6 +23,7 @@ class SignupRepositoryImpl implements SignupRepository {
         "password_confirmation": confirmPassword,
       };
 
+    print('ppppppppppppppppppppp$body');
       return await remote.signup(body);
     } on DioException catch (e) {
       final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";

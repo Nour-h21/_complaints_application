@@ -22,7 +22,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         password: event.password,
         confirmPassword: event.confirmPassword,
       );
-
+      print(user);
       emit(SignupSuccess(user));
     } catch (e) {
       emit(SignupFailed(e.toString().replaceAll("Exception: ", "")));
