@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
 
-class DetailsComplaintRepositry extends StatelessWidget {
-  const DetailsComplaintRepositry({super.key});
+import '../entities/details_complaint_entity.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+abstract class ComplaintsDetailsRepository {
+  /// Get complaint details by id
+  Future<ComplaintDetailEntity> getComplaintDetails(int id);
 }

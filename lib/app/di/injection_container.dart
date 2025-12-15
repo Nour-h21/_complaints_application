@@ -2,7 +2,7 @@ import 'package:complaints_application/app/di/resend_otp_module.dart';
 import 'package:get_it/get_it.dart';
 
 import 'add_complaint_module.dart';
-import 'complaints_module.dart';
+import 'my_complaints_module.dart';
 import 'core_module.dart';
 import 'details_complaint.dart';
 import 'login_module.dart';
@@ -17,7 +17,7 @@ Future<void> init() async {
   await initVerifyOtpModule();
   await initResendOtpModule();
   await initSignupModule();
-  await initComplaintsModule();
+  await initMyComplaintsModule();
   await initAddcomplaintModule();
   await initDetailsomplaintModule();
 }

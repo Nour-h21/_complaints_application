@@ -1,82 +1,83 @@
-// import 'package:complaints_application/core/constants/colors/colors.dart';
-// import 'package:flutter/widgets.dart';
 
-// import '../../utils/helpers/size_config.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-// class AppTextStyles {
-//  static TextStyle welStyle = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.073, // بدل 30
-//     color: AppColors.primaryb,
-//     fontFamily: 'Arima',
-//     fontWeight: FontWeight.w600,
-//     letterSpacing: 1,
-//   );
-
-//  static TextStyle plStyle = TextStyle(
-//     fontSize:SizeConfig.screenWidth * 0.044, // بدل 18
-//     color: AppColors.primaryb,
-//     fontFamily: 'Arima',
-//     fontWeight: FontWeight.w400,
-//     // letterSpacing: 0.5,
-  
-//   );
-
-//  static TextStyle buttonAuthStyle = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.049, // بدل 20
-//     color: AppColors.primaryb,
-//     fontFamily: 'Arima',
-//     fontWeight: FontWeight.w800,
-//     letterSpacing: 1,
-//   );
-
-//   static TextStyle buttonAuthNoAcountStyle = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.049, // بدل 20
-//     color: AppColors.primaryb,
-//     fontFamily: 'Arima',
-//     fontWeight: FontWeight.w800,
-//     letterSpacing: 1,
-//   );
-
-//   static TextStyle appTextStyle = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.072, // بدل 30
-//     color: AppColors.brown,
-//     fontWeight: FontWeight.w500,
-//     letterSpacing: 1,
-//   );
-
-//   static TextStyle hintStyle = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.040, 
-//     color: AppColors.brown,
-//     fontWeight: FontWeight.w400,
-//     letterSpacing: 1,
-//   );
-
-//   static TextStyle midStyle = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.049,  
-//     color: AppColors.brown,
-//     fontWeight: FontWeight.w600,
-//     letterSpacing: 1,
-//   );
+import '../../utils/helpers/size_config.dart';
+import '../colors/colors.dart';
 
 
-//   static TextStyle midStyleBaig = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.042, 
-//     color: AppColors.baig,
-//     fontWeight: FontWeight.w600,
-//     letterSpacing: 1,
-//   );
+class AppTextStyles {
 
-//    static TextStyle smallStyleBaig = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.034, 
-//     color: AppColors.baig,
-//     fontWeight: FontWeight.w800,
-//     letterSpacing: 1,
-//   );
 
-//    static TextStyle smallStyleBrown = TextStyle(
-//     fontSize: SizeConfig.screenWidth * 0.038, // بدل 16.5
-//     color: AppColors.brown,
-//     fontWeight: FontWeight.w600,
-//     letterSpacing: 1,
-//   );
-// }
+  static TextStyle bigBeigeStyle = TextStyle(
+    fontSize: SizeConfig.h(24),
+    color: AppColors.beige,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle medBeigeStyle = TextStyle(
+    fontSize: SizeConfig.h(17),
+    color: AppColors.beige,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle veryMedBeigeStyle = TextStyle(
+    fontSize: SizeConfig.h(19),
+    color: AppColors.beige,
+    fontWeight: FontWeight.bold,
+  );
+
+   static TextStyle smallBeigeStyle = TextStyle(
+    fontSize: SizeConfig.h(13.5),
+    color: AppColors.beige,
+    fontWeight: FontWeight.w400,
+  );
+
+   static TextStyle largeWhite70Style = TextStyle(
+    fontSize: SizeConfig.h(18),
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle medWhite70Style = TextStyle(
+    fontSize: SizeConfig.h(16),
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle smallWhite70Style = TextStyle(
+    fontSize: SizeConfig.h(15),
+    color: AppColors.primaryColor,
+   
+  );
+  static TextStyle verySmallWhite70Style = TextStyle(
+    fontSize: SizeConfig.h(14.3),
+    color: AppColors.primaryColor,
+   
+  );
+
+ static TextStyle bigwhiteStyle = TextStyle(
+    fontSize: SizeConfig.h(24),
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle medBlackStyle = TextStyle(
+    fontSize: SizeConfig.h(20),
+    color: AppColors.black,
+    fontWeight: FontWeight.bold,
+  );
+
+   static TextStyle verySmallBlackStyle = TextStyle(
+   fontSize: SizeConfig.h(14.3),
+    color: AppColors.black,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle smallOliveGreenStyle = TextStyle(
+    fontSize: SizeConfig.h(15.5),
+    color: AppColors.oliveGreen,
+    fontWeight: FontWeight.w500,
+  );
+
+}
