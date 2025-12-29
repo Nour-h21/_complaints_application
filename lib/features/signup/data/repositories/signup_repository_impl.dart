@@ -23,25 +23,34 @@ class SignupRepositoryImpl implements SignupRepository {
         "password_confirmation": confirmPassword,
       };
 
-    print('ppppppppppppppppppppp$body');
+      print('ppppppppppppppppppppp$body');
       return await remote.signup(body);
     } on DioException catch (e) {
-      final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
-
-      if (msg == "The email has already been taken.") {
-        throw Exception("البريد الإلكتروني مستخدم مسبقًا");
-      }
-
-      if (msg == "The name field is required.") {
-        throw Exception("الاسم مطلوب");
+       final responseData = e.response?.data;
+  
+  // الأولوية لـ errors إذا موجود
+  if (responseData != null && responseData["errors"] != null) {
+    final errors = responseData["errors"];
+    if (errors is List && errors.isNotEmpty) {
+      // نأخذ أول خطأ في القائمة
+      throw Exception(errors[0].toString());
+    }
+  }
+  
+  // إذا ما في errors، نجرب message
+  final msg = responseData?["message"] ?? "حدث خطأ غير متوقع";
+  
+      print(msg);
+      if (msg == "الرجاء إدخال بريد إلكتروني أو رقم هاتف صحيح") {
+        throw Exception("الرجاء إدخال بريد إلكتروني أو رقم هاتف صحيح");
       }
 
       if (msg == "The password field confirmation does not match.") {
         throw Exception("تأكيد كلمة السر غير متطابق");
       }
 
-      if (msg == "The email field must be a valid email address.") {
-        throw Exception("البريد الإلكتروني غير صالح");
+      if (msg == "The email or phone has already been taken.") {
+        throw Exception("البريد الإلكتروني أو رقم الموبايل مستخدم مسبقاً");
       }
 
       throw Exception(msg);

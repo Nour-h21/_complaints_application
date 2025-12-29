@@ -23,6 +23,8 @@ dio.interceptors.add(
         "signin",
         "checkOtpCode",
         "resendOtp",
+        "get-notifications",
+        "get-unread-notifications-count"
       ];
 
       // إذا الـ endpoint موجود ضمن القائمة → ما نضيف توكن
@@ -33,7 +35,8 @@ dio.interceptors.add(
       // غير هيك → نضيف التوكن
       final token = await getIt<StorageService>().getToken();
       if (token != null && token.isNotEmpty) {
-        options.headers['Authorization'] = 'Bearer 1|EqwdbI3diHdVXpg1Njap6hXmgTyDfov6CVEOYddd22ca1608';
+        
+        options.headers['Authorization'] = 'Bearer $token';
       }
 
       return handler.next(options);

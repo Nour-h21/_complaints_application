@@ -65,11 +65,12 @@ class BackgroundWithLogo extends StatelessWidget {
                 ],
               ),
 
-              AppSpaces.verticalVeryLarge,
+              // AppSpaces.verticalVeryLarge,
+              SizedBox(height: SizeConfig.h(70),),
 
               useListview
                   ? SizedBox(
-                      height: 498,
+                      height: 530,
                       child: ListView(
                         scrollDirection: Axis.vertical,
                         children: [child, AppSpaces.verticalVeryLarge],

@@ -5,31 +5,35 @@ class SignupModel extends SignupEntity {
     required super.id,
     required super.roleId,
     required super.name,
-    required super.email,
-    required super.phone,
-    required super.photo,
+     super.email,
+     super.phone,
+     super.photo,
     required super.points,
-    required super.genderId,
+     super.genderId,
     required super.otpCode,
     required super.otpExpiresAt,
     required super.isVerified,
+    // required super.cityId,
+    // required super.emailVerifiedAt,
+     super.fcmToken
   });
 
   factory SignupModel.fromJson(Map<String, dynamic> json) {
-    final data = json["data"];
+  final data = json["data"] as Map<String, dynamic>?;
 
-    return SignupModel(
-      id: data["id"] ?? 0,
-      roleId: data["role_id"] ?? 0,
-      name: data["name"] ?? "",
-      email: data["email"],              // nullable OK
-      phone: data["phone"],              // nullable OK
-      photo: data["photo"],              // ممكن يكون null → الآن مسموح
-      points: data["points"] ?? 0,
-      genderId: data["gender_id"],
-      otpCode: data["otp_code"],
-      otpExpiresAt: data["otp_expires_at"],
-      isVerified: data["is_verified"] ?? 0,
-    );
-  }
+  return SignupModel(
+    id: data?["id"] ?? 0,
+    roleId: data?["role_id"] ?? 0,
+    name: (data?["name"] as String?) ?? "",   // ⭐️ الحل
+    email: data?["email"] as String?,
+    phone: data?["phone"] as String?,
+    photo: data?["photo"] as String?,
+    points: data?["points"] ?? 0,
+    genderId: data?["gender_id"]?.toString(),
+    otpCode: data?["otp_code"] as String,
+    otpExpiresAt: data?["otp_expires_at"] as String,
+    isVerified: data?["is_verified"] ?? 0,
+    fcmToken: data?["fcm_token"] as String?,
+  );
+}
 }

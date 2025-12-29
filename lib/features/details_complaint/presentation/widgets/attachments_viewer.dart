@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:complaints_application/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:open_filex/open_filex.dart';
+import 'package:http/http.dart' as http;
 
 // class AttachmentsViewer extends StatelessWidget {
-//   final List<String> attachments; 
+//   final List<String> attachments;
 
 //   const AttachmentsViewer({
 //     super.key,
@@ -117,15 +119,10 @@ import 'package:open_filex/open_filex.dart';
 //   }
 // }
 
-
-
 class AttachmentsViewer extends StatelessWidget {
   final List<String> attachments; // remote URLs or local paths
 
-  const AttachmentsViewer({
-    super.key,
-    required this.attachments,
-  });
+  const AttachmentsViewer({super.key, required this.attachments});
 
   bool _isImage(String p) {
     p = p.toLowerCase();
@@ -201,15 +198,27 @@ class AttachmentsViewer extends StatelessWidget {
 
               return InkWell(
                 onTap: () async {
-                  try {
-                    await OpenFilex.open(path);
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                       SnackBar(
-                        backgroundColor: Colors.redAccent,
-                        content: Text('لا يمكن فتح الملف',style: AppTextStyles.smallBeigeStyle,)),
-                    );
-                  }
+                  InkWell(
+                    onTap: () {
+                      NativeFileOpener.openPdf(fileName);
+                    },
+                    child: Text('فتح PDF'),
+                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (_) => FullPdfView(pdfPath: path,),
+                  //   ),
+                  // );
+                  // try {
+                  //   await OpenFilex.open(path);
+                  // } catch (e) {
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //      SnackBar(
+                  //       backgroundColor: Colors.redAccent,
+                  //       content: Text('لا يمكن فتح الملف',style: AppTextStyles.smallBeigeStyle,)),
+                  //   );
+                  // }
                 },
                 child: Container(
                   width: 130,
@@ -241,14 +250,18 @@ class AttachmentsViewer extends StatelessWidget {
     );
   }
 }
+
 class _FullImageView extends StatelessWidget {
   final String imagePath;
   const _FullImageView({required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
-    final isRemote = imagePath.startsWith('http') || imagePath.startsWith('https');
-    final image = isRemote ? Image.network(imagePath) : Image.file(File(imagePath));
+    final isRemote =
+        imagePath.startsWith('http') || imagePath.startsWith('https');
+    final image = isRemote
+        ? Image.network(imagePath)
+        : Image.file(File(imagePath));
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -283,3 +296,97 @@ class _FullImageView extends StatelessWidget {
     );
   }
 }
+
+class NativeFileOpener {
+  static const _channel = MethodChannel('file_opener');
+
+  static Future<void> openPdf(String url) async {
+    try {
+      await _channel.invokeMethod('openPdf', {'url': url});
+    } on PlatformException catch (e) {
+      throw 'Failed to open pdf: ${e.message}';
+    }
+  }
+}
+
+// class FullPdfView extends StatefulWidget {
+//   final String pdfPath; 
+//   const FullPdfView({super.key, required this.pdfPath});
+
+//   @override
+//   State<FullPdfView> createState() => _FullPdfViewState();
+// }
+
+// class _FullPdfViewState extends State<FullPdfView> {
+//   String? localPath;
+//   bool isLoading = true;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _preparePdf();
+//   }
+
+//   Future<void> _preparePdf() async {
+//   try {
+//     if (widget.pdfPath.startsWith('http')) {
+     
+//       final response = await http.get(Uri.parse(widget.pdfPath));
+//       final tempDir = Directory.systemTemp; 
+//       final file = File('${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.pdf');
+//       await file.writeAsBytes(response.bodyBytes);
+//       localPath = file.path;
+//     } else {
+      
+//       localPath = widget.pdfPath;
+//     }
+//   } catch (e) {
+   
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(content: Text('فشل تحميل الملف: $e')),
+//     );
+//     localPath = null;
+//   } finally {
+//     if (mounted) setState(() => isLoading = false);
+//   }
+// }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.black,
+//       body: Stack(
+//         children: [
+//           if (isLoading)
+//             const Center(child: CircularProgressIndicator())
+//           else
+//             Positioned.fill(
+//               child: PDFView(
+//                 filePath: localPath,
+//                 enableSwipe: true,
+//                 swipeHorizontal: true,
+//                 autoSpacing: true,
+//                 pageFling: true,
+//               ),
+//             ),
+          
+//           Positioned(
+//             top: 40,
+//             right: 20,
+//             child: GestureDetector(
+//               onTap: () => Navigator.pop(context),
+//               child: Container(
+//                 padding: const EdgeInsets.all(8),
+//                 decoration: const BoxDecoration(
+//                   color: Colors.black54,
+//                   shape: BoxShape.circle,
+//                 ),
+//                 child: const Icon(Icons.close, color: Colors.white, size: 28),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

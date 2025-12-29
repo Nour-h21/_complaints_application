@@ -14,8 +14,8 @@ class GradientBackground extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             AppColors.armyGreen,
-            AppColors.armyGreen2,
-            AppColors.oliveGreen2,
+                    AppColors.lowGreen,
+                    AppColors.beige,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

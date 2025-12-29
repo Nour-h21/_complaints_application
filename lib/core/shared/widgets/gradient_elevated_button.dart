@@ -1,3 +1,4 @@
+import 'package:complaints_application/core/constants/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/layout/app_padding.dart';
@@ -36,7 +37,7 @@ class GradientElevatedButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: borderRadius ?? AppRadius.circularSmall,
             gradient: LinearGradient(
-              colors: [const Color.fromARGB(255, 253, 250, 218), Colors.green.shade100],
+              colors: [AppColors.greenWithShade,AppColors.beige],
             ),
           ),
           child: Padding(

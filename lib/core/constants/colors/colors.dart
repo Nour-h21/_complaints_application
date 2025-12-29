@@ -7,9 +7,14 @@ class AppColors{
   static Color oliveGreen = const Color(0XFF05322d);
   static Color oliveGreen2 = const Color.fromARGB(255, 0, 17, 8);
   static Color armyGreen =  const Color.fromARGB(255, 71, 90, 71);
-  static Color armyGreen2 = const Color.fromARGB(255, 81, 96, 81);
+  static Color armyGreen2 = const Color.fromRGBO(81, 96, 81, 1);
   static Color primaryColor = Colors.white70;
+  static Color primaryColor1 = Colors.white70;
   static Color yellow = const Color.fromARGB(255, 250, 243, 184);
   static Color black = const Color.fromARGB(255, 0, 17, 8);
   static Color greenWithShade = Colors.green.shade100;
+  static Color red =  Colors.red;
+  static Color transparent = Colors.transparent;
+  static Color offWhite = Color(0XFFF2F4EC);
+  static Color lowGreen = Color(0xFFb3beb0);
 }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:complaints_application/core/shared/pages/background_with_logo.dart';
+import 'package:complaints_application/core/shared/widgets/back_button.dart';
 import 'package:complaints_application/features/details_complaint/presentation/bloc/details_complaint_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,158 +35,158 @@ class _DetailsComplaintState extends State<DetailsComplaint> {
 
   @override
   Widget build(BuildContext context) {
-    return BackgroundWithLogo(
-      icon: IconButton(onPressed: (){
-        Navigator.of(context).pop();
-      }, icon: Icon(Icons.arrow_back,color: AppColors.beige,)),
-      appbarName: AppTexts.details,
-      padding: AppPadding.onlyTopLargeAndLeftVeryMed,
-      useListview: true,
-      child: Center(
-        child: ClipRRect(
-          borderRadius: AppRadius.circularMedium,
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: SizeConfig.w(20),
-              sigmaY: SizeConfig.h(20),
-            ),
-            child: Container(
-              width: SizeConfig.w(364),
-              height: SizeConfig.h(540),
-              padding: AppPadding.allSmall,
-              decoration: BoxDecoration(
-                color: AppColors.whiteWithOpacity15,
-                borderRadius: AppRadius.circularMedium,
-                border: Border.all(
-                  color: AppColors.whiteWithOpacity3,
-                  width: SizeConfig.w(1.5),
-                ),
+    return SafeArea(
+      child: BackgroundWithLogo(
+        icon: buildBackButton(context),
+        appbarName: AppTexts.details,
+        padding: AppPadding.onlyTopLargeAndLeftVeryMed,
+        useListview: true,
+        child: Center(
+          child: ClipRRect(
+            borderRadius: AppRadius.circularMedium,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: SizeConfig.w(20),
+                sigmaY: SizeConfig.h(20),
               ),
-              child: SingleChildScrollView(
-                child: Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: BlocConsumer<DetailsBloc, DetailsState>(
-                    listener: (context, state) {
-                      if (state is DetailsFailure) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Text(
-                                state.message,
-                                style: AppTextStyles.smallBeigeStyle,
+              child: Container(
+                width: SizeConfig.w(364),
+                height: SizeConfig.h(450),
+                padding: AppPadding.allSmall,
+                decoration: BoxDecoration(
+                  color: AppColors.whiteWithOpacity15,
+                  borderRadius: AppRadius.circularMedium,
+                  border: Border.all(
+                    color: AppColors.whiteWithOpacity3,
+                    width: SizeConfig.w(1.5),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: BlocConsumer<DetailsBloc, DetailsState>(
+                      listener: (context, state) {
+                        if (state is DetailsFailure) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Text(
+                                  state.message,
+                                  style: AppTextStyles.smallBeigeStyle,
+                                ),
                               ),
+                              backgroundColor: Colors.redAccent,
                             ),
-                            backgroundColor: Colors.redAccent,
-                          ),
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is DetailsLoading || state is DetailsInitial) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (state is DetailsLoaded) {
-                        final d = state.detail;
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  height: SizeConfig.h(39),
-                                  width: SizeConfig.w(95),
-                                  decoration: BoxDecoration(
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is DetailsLoading || state is DetailsInitial) {
+                          return const Center(child: CircularProgressIndicator());
+                        } else if (state is DetailsLoaded) {
+                          final d = state.detail;
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: SizeConfig.h(39),
+                                    width: SizeConfig.w(95),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.oliveGreen,
+                                      borderRadius: AppRadius.circularLarge,
+                                    ),
+                                    child: Text(
+                                      d.statusName,
+                                      style: AppTextStyles.smallBeigeStyle,
+                                    ),
+                                  ),
+                                ],
+                              ),
+      
+                              AppSpaces.verticalVerySmall,
+                              Text(
+                                AppTexts.direction,
+                                style: AppTextStyles.veryMedBeigeStyle,
+                              ),
+                              AppSpaces.verticalTiny,
+                              Text(
+                                d.departmentName,
+                                style: AppTextStyles.largeWhite70Style,
+                              ),
+                              AppSpaces.verticalMedSmall,
+      
+                              Text(
+                                AppTexts.type,
+                                style: AppTextStyles.veryMedBeigeStyle,
+                              ),
+      
+                              AppSpaces.verticalTiny,
+                              Text(
+                                d.typeName,
+                                style: AppTextStyles.largeWhite70Style,
+                              ),
+                              AppSpaces.verticalVeryMedium,
+      
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
                                     color: AppColors.oliveGreen,
-                                    borderRadius: AppRadius.circularLarge,
+                                    size: SizeConfig.w(22.5),
                                   ),
-                                  child: Text(
-                                    d.statusName,
-                                    style: AppTextStyles.smallBeigeStyle,
+                                  AppSpaces.horizontalVerySmall,
+                                  Text(
+                                    d.location,
+                                    style: AppTextStyles.largeWhite70Style,
                                   ),
-                                ),
-                              ],
-                            ),
-
-                            AppSpaces.verticalVerySmall,
-                            Text(
-                              AppTexts.direction,
-                              style: AppTextStyles.veryMedBeigeStyle,
-                            ),
-                            AppSpaces.verticalTiny,
-                            Text(
-                              d.departmentName,
-                              style: AppTextStyles.largeWhite70Style,
-                            ),
-                            AppSpaces.verticalMedSmall,
-
-                            Text(
-                              AppTexts.type,
-                              style: AppTextStyles.veryMedBeigeStyle,
-                            ),
-
-                            AppSpaces.verticalTiny,
-                            Text(
-                              d.typeName,
-                              style: AppTextStyles.largeWhite70Style,
-                            ),
-                            AppSpaces.verticalVeryMedium,
-
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.location_on,
-                                  color: AppColors.oliveGreen,
-                                  size: SizeConfig.w(22.5),
-                                ),
-                                AppSpaces.horizontalVerySmall,
-                                Text(
-                                  d.location,
-                                  style: AppTextStyles.largeWhite70Style,
-                                ),
-                              ],
-                            ),
-                            AppSpaces.verticalVeryMedium,
-                            Text(
-                              'الوصف',
-                              style: AppTextStyles.veryMedBeigeStyle,
-                            ),
-                            AppSpaces.verticalVerySmall,
-                            Padding(
-                              padding: AppPadding.symmetricHorizontalVerySmall,
-                              child: Container(
-                                constraints: BoxConstraints(maxHeight: 135),
-                                child: SingleChildScrollView(
-                                  child: Text(
-                                    d.problemDescription,
-                                    style: AppTextStyles.medWhite70Style,
+                                ],
+                              ),
+                              AppSpaces.verticalVeryMedium,
+                              Text(
+                                'الوصف',
+                                style: AppTextStyles.veryMedBeigeStyle,
+                              ),
+                              AppSpaces.verticalVerySmall,
+                              Padding(
+                                padding: AppPadding.symmetricHorizontalVerySmall,
+                                child: Container(
+                                  constraints: BoxConstraints(maxHeight: 135),
+                                  child: SingleChildScrollView(
+                                    child: Text(
+                                      d.problemDescription,
+                                      style: AppTextStyles.medWhite70Style,
+                                    ),
                                   ),
                                 ),
                               ),
+                              AppSpaces.verticalMedSmall,
+                              Text(
+                                'المرفقات',
+                                style: AppTextStyles.veryMedBeigeStyle,
+                              ),
+                              AppSpaces.verticalSmall,
+      
+                              AttachmentsViewer(attachments: d.attachments),
+                            ],
+                          );
+                        } else if (state is DetailsFailure) {
+                          return Center(
+                            child: Text(
+                              'حدث خطأ: ${state.message}',
+                              style: AppTextStyles.medBeigeStyle,
                             ),
-                            AppSpaces.verticalMedSmall,
-                            Text(
-                              'المرفقات',
-                              style: AppTextStyles.veryMedBeigeStyle,
-                            ),
-                            AppSpaces.verticalSmall,
-
-                            AttachmentsViewer(attachments: d.attachments),
-                          ],
-                        );
-                      } else if (state is DetailsFailure) {
-                        return Center(
-                          child: Text(
-                            'حدث خطأ: ${state.message}',
-                            style: AppTextStyles.medBeigeStyle,
-                          ),
-                        );
-                      } else {
-                        return const SizedBox.shrink();
-                      }
-                    },
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),

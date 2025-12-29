@@ -8,11 +8,10 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginUsecase useCase;
   LoginBloc(this.useCase) : super(LoginInitial()) {
-     on<SubmitLoginEvent>(_login);
+    on<SubmitLoginEvent>(_login);
   }
 
- Future<void> _login(
-      SubmitLoginEvent event, Emitter<LoginState> emit) async {
+  Future<void> _login(SubmitLoginEvent event, Emitter<LoginState> emit) async {
     emit(LoginLoading());
 
     try {
@@ -23,7 +22,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       emit(LoginSuccess(user));
     } catch (e) {
-      emit(LoginFailed(e.toString().replaceAll("Exception: ", "")));
+      final msg = e.toString().replaceAll("Exception: ", "");
+
+      if (msg ==
+          "الحساب غير مفعل، يجب تفعيل الحساب عبر رمز التحقق قبل تسجيل الدخول.") {
+        emit(LoginNotVerified(event.emailOrPhone));
+      } else {
+        emit(LoginFailed(msg));
+      }
     }
   }
 }

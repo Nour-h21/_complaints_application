@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../../constants/urls/assets_url.dart';
 import '../../utils/helpers/size_config.dart';
 import '../pages/gradient_background.dart';
 import 'frosted_glass_card.dart';
@@ -32,10 +33,10 @@ class CardImageOnGlass extends StatelessWidget {
                   Container(
                     height: SizeConfig.w(90),
                     width: SizeConfig.w(90),
-                    decoration: const BoxDecoration(
+                    decoration:  BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage('assets/images/image2jpg.jpg'),
+                        image: AssetImage(AppAssets.logoWithoutBackground),
                         fit: BoxFit.cover,
                       ),
                     ),

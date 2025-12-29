@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 
+import '../../../../app/di/injection_container.dart';
+import '../../../../core/services/storage_service.dart';
+import '../../../update_device_token/presentation/pages/fcm_token_handler.dart';
 import '../models/login_model.dart';
 
 abstract class LoginRemoteDs {
@@ -18,6 +21,11 @@ class LoginRemoteDsImpl implements LoginRemoteDs {
     // }
 
     final response = await dio.post("signin", data: body);
+    final loginResponse = LoginModel.fromJson(response.data);
+
+    await StorageService.saveToken(loginResponse.token);
+    await StorageService.saveUserId(loginResponse.id.toString());
+    getIt<FcmTokenHandler>().init(loginResponse.id.toString());
     return LoginModel.fromJson(response.data);
   }
 }

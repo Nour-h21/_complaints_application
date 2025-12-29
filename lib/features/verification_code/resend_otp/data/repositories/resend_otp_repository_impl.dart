@@ -26,24 +26,23 @@ class ResendOtpRepositoryImpl implements ResendOtpRepository {
   Future<ResendOtpEntity> resendOtp() async {
     final response = await remote.resendOtp();
 
-    // معالجة الرسائل هنا قبل إرسالها للـ Bloc
     if (response.message.contains("غير موجود")) {
       return ResendOtpEntity(
-        status: false,
+        status: 0,
         message: "هذا الحساب غير موجود.",
       );
     }
 
     if (response.message.contains("مفعّل مسبقًا")) {
       return ResendOtpEntity(
-        status: false,
+        status: 0,
         message: "الحساب مفعّل مسبقًا، لا حاجة لإعادة إرسال رمز التحقق.",
       );
     }
 
     // إذا نجحت العملية
     return ResendOtpEntity(
-      status: true,
+      status: 1,
       message: response.message,
     );
   }

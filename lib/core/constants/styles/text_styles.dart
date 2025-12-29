@@ -55,11 +55,29 @@ class AppTextStyles {
     color: AppColors.primaryColor,
    
   );
+  
+  static TextStyle smallwhiteStyle = TextStyle(
+    fontSize: SizeConfig.sp(14),
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle medwhiteStyle = TextStyle(
+    fontSize: SizeConfig.sp(22),
+    color: AppColors.primaryColor1,
+    fontWeight: FontWeight.bold,
+  );
 
  static TextStyle bigwhiteStyle = TextStyle(
     fontSize: SizeConfig.h(24),
-    color: Colors.white,
+    color: AppColors.primaryColor1,
     fontWeight: FontWeight.bold,
+  );
+ 
+ static TextStyle smallBlackStyle = TextStyle(
+    fontSize: SizeConfig.h(16),
+    color: AppColors.black,
+    fontWeight: FontWeight.w800,
   );
 
   static TextStyle medBlackStyle = TextStyle(
@@ -78,6 +96,12 @@ class AppTextStyles {
     fontSize: SizeConfig.h(15.5),
     color: AppColors.oliveGreen,
     fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle medOliveGreenStyle = TextStyle(
+    fontSize: SizeConfig.sp(25),
+    color: AppColors.oliveGreen,
+    fontWeight: FontWeight.bold,
   );
 
 }

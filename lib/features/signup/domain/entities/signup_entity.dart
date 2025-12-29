@@ -7,10 +7,12 @@ class SignupEntity {
   final String? photo;         // ← صارت nullable
   final int points;
   final String? genderId;      // ← صارت nullable
-  final String? otpCode;       // ← صارت nullable
-  final String? otpExpiresAt;  // ← صارت nullable
+  final String otpCode;       // ← صارت nullable
+  final String otpExpiresAt;  // ← صارت nullable
   final int isVerified;
-
+  final String? fcmToken;
+  // final String? cityId;
+  // final String? emailVerifiedAt;
   SignupEntity({
     required this.id,
     required this.roleId,
@@ -20,8 +22,11 @@ class SignupEntity {
     this.photo,
     required this.points,
     this.genderId,
-    this.otpCode,
-    this.otpExpiresAt,
+    required this.otpCode,
+    required this.otpExpiresAt,
     required this.isVerified,
+    this.fcmToken,
+    // this.cityId,
+    // this.emailVerifiedAt,
   });
 }
