@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -145,13 +146,11 @@ class _EditComplaintViewState extends State<_EditComplaintView> {
             key: _formKey,
             child: Stack(
               children: [
-                
                 Container(
                   decoration: BoxDecoration(
                     gradient: gradients.onboardingGradient,
                   ),
                 ),
-                
 
                 Padding(
                   padding: EdgeInsets.only(top: 45, left: 15),
@@ -165,48 +164,10 @@ class _EditComplaintViewState extends State<_EditComplaintView> {
                             textAlign: TextAlign.center,
                             style: texts.addTitle,
                           ),
-                      
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       'S',
-                          //       style: TextStyle(
-                          //         fontSize: 35,
-                          //         fontWeight: FontWeight.bold,
-                          //         color: AppColors.oliveGreen,
-                          //         fontFamily: 'Arima',
-                          //       ),
-                          //     ),
-                      
-                          //     Text(
-                          //       'hakwa \n yr',
-                          //       style: TextStyle(
-                          //         fontSize: 12,
-                          //         fontWeight: FontWeight.bold,
-                          //         color: AppColors.beige,
-                          //         fontFamily: 'Arima',
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-                          
                           SizedBox(width: SizeConfig.w(100)),
-                          Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => DetailsComplaint(
-                                      complaintId: widget.complaintId,
-                                    ),
-                                  ),
-                                );
-                              },
-                              icon: Icon(Icons.arrow_back, color: AppColors.beige),
-                            ),
-                          ),
+
+                          buildBackButton2(context),
+
                         ],
                       ),
                       Divider(
@@ -249,7 +210,6 @@ class _EditComplaintViewState extends State<_EditComplaintView> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      
                                       // Text(
                                       //   'Edit The Complsint',
                                       //   textAlign: TextAlign.center,
@@ -258,10 +218,7 @@ class _EditComplaintViewState extends State<_EditComplaintView> {
                                       AppSpaces.verticalSmall,
                                       Text(
                                         "You can only edit the description field and add attachments.",
-                                        style: TextStyle(
-                                          color: AppColors.primaryColor,
-                                          fontFamily: 'Arima',
-                                        ),
+                                        style: texts.addSubTitle,
                                       ),
                                       AppSpaces.verticalMedium,
                                       Padding(
@@ -330,32 +287,6 @@ class _EditComplaintViewState extends State<_EditComplaintView> {
                                       GradientElevatedButton(
                                         text: 'Submit',
                                         onPressed: () {
-                                          // final bloc = context
-                                          //     .read<EditComplaintBloc>();
-                                          // if (bloc.state.attachments.isEmpty) {
-                                          //   ScaffoldMessenger.of(
-                                          //     context,
-                                          //   ).showSnackBar(
-                                          //     SnackBar(
-                                          //       backgroundColor: Color.fromARGB(
-                                          //         255,
-                                          //         250,
-                                          //         61,
-                                          //         47,
-                                          //       ),
-                                          //       content: Text(
-                                          //         "At least one image or file must be attached",
-                                          //         style: TextStyle(
-                                          //           fontFamily: 'Arima',
-                                          //           fontSize: 15,
-                                          //           fontWeight: FontWeight.w500,
-                                          //           color: AppColors.offWhite,
-                                          //         ),
-                                          //       ),
-                                          //     ),
-                                          //   );
-                                          //   return;
-                                          // }
                                           if (_formKey.currentState!
                                               .validate()) {
                                             context
@@ -372,7 +303,6 @@ class _EditComplaintViewState extends State<_EditComplaintView> {
                                           }
                                         },
                                       ),
-                                      
                                     ],
                                   ),
                                 ),
@@ -391,184 +321,45 @@ class _EditComplaintViewState extends State<_EditComplaintView> {
       ),
     );
   }
+
+  Widget buildBackButton2(BuildContext context) {
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      return Directionality(
+        textDirection: TextDirection.rtl,
+        child: CupertinoButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    DetailsComplaint(complaintId: widget.complaintId),
+              ),
+            );
+          },
+          child: Icon(Icons.arrow_back_ios, color: AppColors.beige),
+        ),
+      );
+    }
+
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: IconButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => DetailsComplaint(complaintId: widget.complaintId),
+            ),
+          );
+        },
+        icon: Icon(Icons.arrow_back, color: AppColors.beige),
+      ),
+    );
+  }
 }
 
 
 
-// class EditComplaintPage extends StatelessWidget {
-//   final int complaintId;
-//   final String type;
-//   final String department;
-//   final String location;
-//   final String description;
 
-//   const EditComplaintPage({
-//     super.key,
-//     required this.complaintId,
-//     required this.type,
-//     required this.department,
-//     required this.location,
-//     required this.description,
-//   });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocProvider(
-//       create: (_) => getIt<EditComplaintBloc>(),
-//       child: _EditComplaintView(
-//         complaintId: complaintId,
-//         type: type,
-//         department: department,
-//         location: location,
-//         description: description,
-//       ),
-//     );
-//   }
-  
-// }
-// class _EditComplaintView extends StatefulWidget {
-//   final int complaintId;
-//   final String type;
-//   final String department;
-//   final String location;
-//   final String description;
 
-//   const _EditComplaintView({
-//     required this.complaintId,
-//     required this.type,
-//     required this.department,
-//     required this.location,
-//     required this.description,
-//   });
-
-//   @override
-//   State<_EditComplaintView> createState() => _EditComplaintViewState();
-// }
-
-// class _EditComplaintViewState extends State<_EditComplaintView> {
-//   final _formKey = GlobalKey<FormState>();
-//   late TextEditingController descriptionController;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     descriptionController =
-//         TextEditingController(text: widget.description);
-//   }
-
-//   @override
-//   void dispose() {
-//     descriptionController.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: BlocConsumer<EditComplaintBloc, EditComplaintState>(
-//         listener: (context, state) {
-//           if (state.success) {
-//             ScaffoldMessenger.of(context).showSnackBar(
-//               const SnackBar(content: Text('Complaint updated')),
-//             );
-//             Navigator.pop(context, true);
-//           }
-
-//           if (state.error != null) {
-//             ScaffoldMessenger.of(context).showSnackBar(
-//               SnackBar(content: Text(state.error!)),
-//             );
-//           }
-//         },
-//         builder: (context, state) {
-//           return SingleChildScrollView(
-//             padding: const EdgeInsets.all(16),
-//             child: Form(
-//               key: _formKey,
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Text('Edit Complaint',
-//                       style: Theme.of(context).textTheme.headlineSmall),
-
-//                   const SizedBox(height: 20),
-
-//                   TextFormField(
-//                     initialValue: widget.type,
-//                     readOnly: true,
-//                     decoration:
-//                         const InputDecoration(labelText: 'Type'),
-//                   ),
-
-//                   const SizedBox(height: 10),
-
-//                   TextFormField(
-//                     initialValue: widget.department,
-//                     readOnly: true,
-//                     decoration:
-//                         const InputDecoration(labelText: 'Department'),
-//                   ),
-
-//                   const SizedBox(height: 10),
-
-//                   TextFormField(
-//                     controller: descriptionController,
-//                     maxLines: 4,
-//                     decoration: const InputDecoration(
-//                         labelText: 'Problem Description'),
-//                     validator: (v) =>
-//                         v!.isEmpty ? 'Required' : null,
-//                   ),
-
-//                   const SizedBox(height: 10),
-
-//                   TextFormField(
-//                     initialValue: widget.location,
-//                     readOnly: true,
-//                     decoration:
-//                         const InputDecoration(labelText: 'Location'),
-//                   ),
-
-//                   const SizedBox(height: 20),
-
-//                   /// ATTACHMENTS
-//                   buildEditFileSelector(
-//                     context,
-//                     state.attachments,
-//                   ),
-
-//                   const SizedBox(height: 30),
-
-//                   SizedBox(
-//                     width: double.infinity,
-//                     child: ElevatedButton(
-//                       onPressed: state.loading
-//                           ? null
-//                           : () {
-//                               if (_formKey.currentState!.validate()) {
-//                                 context
-//                                     .read<EditComplaintBloc>()
-//                                     .add(
-// SubmitEditComplaintEvent(
-//                                         complaintId:
-//                                             widget.complaintId,
-//                                         description:
-//                                             descriptionController.text,
-//                                       ),
-//                                     );
-//                               }
-//                             },
-//                       child: state.loading
-//                           ? const CircularProgressIndicator()
-//                           : const Text('Submit'),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }

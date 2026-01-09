@@ -138,7 +138,7 @@ class ComplaintCard extends StatelessWidget {
           );
         },
         child: Container(
-          width: SizeConfig.w(230),
+          width: SizeConfig.w(260),
           height: SizeConfig.h(133),
           decoration: BoxDecoration(
             borderRadius: AppRadius.circularMedium,
@@ -189,7 +189,7 @@ class ComplaintCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             complaint.departmentName,
-                            style: AppTextStyles.smallWhite70Style,
+                            style: AppTextStyles.veryVerySmallWhite70Style,
                           ),
                         ),
                       ],
@@ -206,7 +206,7 @@ class ComplaintCard extends StatelessWidget {
                         AppSpaces.horizontalVerySmall,
                         Text(
                           complaint.typeName,
-                          style: AppTextStyles.smallWhite70Style,
+                          style: AppTextStyles.veryVerySmallWhite70Style,
                         ),
                       ],
                     ),

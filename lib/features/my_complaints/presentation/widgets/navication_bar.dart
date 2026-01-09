@@ -7,8 +7,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/injection_container.dart';
 import '../../../../core/Theme/app_colors.dart';
-import '../../../../core/Theme/app_gradient.dart';
-import '../../../../core/Theme/app_text_style.dart';
 import '../../../../core/constants/colors/colors.dart';
 import '../../../logout/presentation/bloc/logout_bloc.dart';
 
@@ -38,8 +36,8 @@ class _HomeScreenState extends State<NavicationBar> {
 
   @override
   Widget build(BuildContext context) {
-    final gradients = Theme.of(context).extension<AppGradients>()!;
-    final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
+    // final gradients = Theme.of(context).extension<AppGradients>()!;
+    // final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
     final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return Scaffold(
       body: _pages[_selectedIndex],

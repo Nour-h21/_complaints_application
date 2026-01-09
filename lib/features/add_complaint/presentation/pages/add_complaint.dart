@@ -433,14 +433,14 @@ class _AddComplaint extends State<AddComplaint> {
   void initState() {
     super.initState();
     types = [
-      {"id": "1", "name": "طلب تسجيل"},
-      {"id": "2", "name": "خطأ فاتورة"},
-      {"id": "3", "name": "عطل فني"},
+      {"id": "1", "name": "Registration Request"},
+      {"id": "2", "name": "Invoice Error"},
+      {"id": "3", "name": "Technical Malfunction"},
     ];
     sections = [
-      {"id": "1", "name": "المؤسسة العامة للكهرباء"},
-      {"id": "2", "name": "المؤسسة العامة لمياه "},
-      {"id": "3", "name": "المؤسسة العامة للاتصالات"},
+      {"id": "1", "name": "Public Electricity Corporation"},
+      {"id": "2", "name": "Public Water Corporation"},
+      {"id": "3", "name": "Public Telecommunications Corporation"},
     ];
   }
 
@@ -561,10 +561,7 @@ class _AddComplaint extends State<AddComplaint> {
                                           AppSpaces.verticalSmall,
                                           Text(
                                             "Please fill in all fields to submit the complaint successfully.",
-                                            style: TextStyle(
-                                              color: AppColors.primaryColor,
-                                              fontFamily: 'Arima',
-                                            ),
+                                            style: texts.addSubTitle
                                           ),
                                           AppSpaces.verticalMedium,
                                           Padding(

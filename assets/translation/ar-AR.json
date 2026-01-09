@@ -1,6 +1,13 @@
 {
-    "change language" : "تغيير اللغة",
-    "arabic":"العربية",
-    "english":"الإنجليزية"
-    
+    "change language": "تغيير اللغة",
+    "arabic": "العربية",
+    "english": "الإنجليزية",
+    "Skip": "تخطي",
+    "Report any issue, in minutes": "أبلغ عن أي مشكلة في دقائق",
+    "Your task is simple: describe the issue, pinpoint the location, and upload supporting files like photos. Your complaint goes directly to the concerned authority.": "مهمتك بسيطة: صف المشكلة، حدد الموقع بدقة، وقم برفع الملفات الداعمة مثل الصور. سيتم إرسال شكواك مباشرة إلى الجهة المختصة.",
+    "Track your complaint, step by step": "تابع شكواك، خطوة بخطوة",
+    "No more guessing! Follow your complaint's status in real-time. Know when it's received, reviewed, and resolved. We guarantee full transparency.": "لا مزيد من التخمين! تابع حالة شكواك في الوقت الفعلي. اعرف متى يتم استلامها، ومراجعتها، وحلها. نضمن لك الشفافية الكاملة.",
+    "All your complaints, organized in one place": "جميع شكواك، منظَّمة في مكان واحد",
+    "Review your complaint history, recall details of any case, and benefit from past solutions. Your government services are now easier.": "راجع سجل شكواك، واسترجع تفاصيل أي قضية، واستفِد من الحلول السابقة. خدمات حكومتك أصبحت الآن أسهل.",
+    "Get Started": "ابدأ الآن"
 }

@@ -1,17 +1,14 @@
 import 'package:complaints_application/core/constants/styles/text_styles.dart';
 import 'package:complaints_application/core/constants/urls/assets_url.dart';
 import 'package:complaints_application/core/utils/helpers/size_config.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/Theme/app_colors.dart';
 import '../../core/Theme/app_gradient.dart';
 import '../../core/Theme/app_text_style.dart';
-import '../../core/Theme/app_theme.dart';
 import '../../core/constants/colors/colors.dart';
-import '../settings/bloc/theme_bloc.dart';
-import '../settings/bloc/theme_event.dart';
 
 PageController controller = PageController();
 
@@ -40,44 +37,9 @@ class FirstPage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   actions: [
-        //     BlocBuilder<ThemeBloc, ThemeData>(
-        //       builder: (context, state) {
-        //         return Switch(
-        //           value: state == AppTheme.darkTheme,
-        //           onChanged: (value) {
-        //             context.read<ThemeBloc>().add(ChangeThemeEvent());
-        //           },
-        //         );
-        //       },
-        //     ),
-        //   ],
-        //   title: const Text(
-        //     'Theme App',
-        //     // style: Theme.of(context).textTheme.headlineSmall,
-        //   ),
-        // ),
         body: Container(
           decoration: BoxDecoration(
             gradient: gradients.onboardingGradient,
-            //LinearGradient(
-            // colors: [
-
-            // AppColors.lowGreen,
-            // AppColors.offWhite,
-
-            // AppColors.armyGreen,
-            //  AppColors.lowGreen,
-            //  AppColors.beige,
-
-            //  AppColors.armyGreen,
-            // AppColors.armyGreen2,
-            // AppColors.oliveGreen2,
-            // ],
-            // begin: Alignment.topRight,
-            // end: Alignment.bottomLeft,
-            // ),
           ),
           child: Column(
             children: [
@@ -104,13 +66,11 @@ class FirstPage extends StatelessWidget {
                     Text(
                       'Report any issue, in minutes',
                       textAlign: TextAlign.center,
-                      // style: AppTextStyles.largOliveGreenStyle,
                       style: texts.onboardingTitle,
                     ),
                     SizedBox(height: SizeConfig.h(10)),
                     Text(
                       "Your task is simple: describe the issue, pinpoint the location, and upload supporting files like photos. Your complaint goes directly to the concerned authority.",
-                      // style: AppTextStyles.medMedGreenStyle,
                       style: texts.onboardingSubtitle,
                       textAlign: TextAlign.center,
                     ),
@@ -126,7 +86,6 @@ class FirstPage extends StatelessWidget {
                     width: SizeConfig.w(26),
                     decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
-                      // color: AppColors.oliveGreen,
                       color: colors.onboardingRectangle,
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -137,7 +96,6 @@ class FirstPage extends StatelessWidget {
                     width: SizeConfig.w(7),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      // color: AppColors.lowGreen,
                       color: colors.onboardingBox,
                     ),
                   ),
@@ -147,7 +105,6 @@ class FirstPage extends StatelessWidget {
                     width: SizeConfig.w(7),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      // color: AppColors.lowGreen,
                       color: colors.onboardingBox,
                     ),
                   ),

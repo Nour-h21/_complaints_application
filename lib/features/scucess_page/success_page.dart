@@ -1,3 +1,6 @@
+import 'package:complaints_application/core/Theme/app_colors.dart';
+import 'package:complaints_application/core/Theme/app_gradient.dart';
+import 'package:complaints_application/core/Theme/app_text_style.dart';
 import 'package:complaints_application/core/constants/layout/app_space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,22 +17,27 @@ class SuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gradients = Theme.of(context).extension<AppGradients>()!;
+     final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
+    final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.armyGreen,
-              AppColors.lowGreen,
-              AppColors.beige,
+          gradient: gradients.onboardingGradient,
+          // LinearGradient(
+           // colors: [
+              
+              // AppColors.armyGreen,
+              // AppColors.lowGreen,
+              // AppColors.beige,
 
               //   AppColors.armyGreen,
               // AppColors.armyGreen2,
               // AppColors.oliveGreen2,
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-          ),
+           // ],
+            // begin: Alignment.topRight,
+            // end: Alignment.bottomLeft,
+          //),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -44,18 +52,14 @@ class SuccessPage extends StatelessWidget {
             Text(
               textAlign: TextAlign.center,
               'The complaint has been submitted successfully. 🎉',
-              style: TextStyle(
-                fontSize: 27,
-                fontFamily: 'Arima',
-                fontWeight: FontWeight.bold,
-                color: AppColors.armyGreen,
-              ),
+              style:texts.success 
             ),
             AppSpaces.verticalSmall,
             Directionality(
               textDirection: TextDirection.rtl,
               child: TextButton(
                 onPressed: () {
+                  GoRouter.of(context).pushReplacement('/NavicationBar');
                   GoRouter.of(context).pushReplacement('/NavicationBar');
                 },
                 child: Row(
@@ -70,12 +74,7 @@ class SuccessPage extends StatelessWidget {
                     Text(
                       textAlign: TextAlign.center,
                       'Back To Home',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Arima',
-                        fontWeight: FontWeight.w300,
-                        color: AppColors.armyGreen2,
-                      ),
+                      style: texts.subsuccess
                     ),
                   ],
                 ),
