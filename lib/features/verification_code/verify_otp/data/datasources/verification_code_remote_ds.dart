@@ -15,13 +15,15 @@ class VerifyOtpRemoteDsImpl implements VerifyOtpRemoteDs {
   @override
   Future<VerifyOtpModel> verifyOtp({required String otp}) async {
     final userId = await StorageService.getUserId();
+    // final token = await StorageService.saveToken(token);
     final response = await dio.post(
       'checkOtpCode/$userId',
       data: {
         'otp_code': otp,
       },
     );
-
+    final verifiResponse = VerifyOtpModel.fromJson(response.data);
+    await StorageService.saveToken(verifiResponse.data);
     if (response.statusCode == 200) {
       return VerifyOtpModel.fromJson(response.data);
     } else {

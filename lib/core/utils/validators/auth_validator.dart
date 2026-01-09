@@ -48,19 +48,21 @@ class AuthValidator {
 
     value = value.replaceAll(" ", "");
 
-    if (value.startsWith("+963")) {
-      value = value.replaceFirst("+963", "0");
-    }
+    // if (value.startsWith("+963")) {
+    //   value = value.replaceFirst("+963", "0");
+    // }
+        if (!value.startsWith("+963")) {
+    return "يجب إدخال رقم الموبايل مع الرمز +963";
+  }
+    // if (value.startsWith("963")) {
+    //   value = value.replaceFirst("963", "0");
+    // }
 
-    if (value.startsWith("963")) {
-      value = value.replaceFirst("963", "0");
-    }
+    // final phoneRegex = RegExp(r'^09[0-9]{8}$');
 
-    final phoneRegex = RegExp(r'^09[0-9]{8}$');
-
-    if (!phoneRegex.hasMatch(value)) {
-      return "رقم الموبايل غير صحيح (يجب أن يكون مثل 09xxxxxxxx)";
-    }
+    // if (!phoneRegex.hasMatch(value)) {
+    //   return "رقم الموبايل غير صحيح (مثال: +963XXXXXXXXX)";
+    // }
 
     return null;
   }

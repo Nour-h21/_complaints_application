@@ -8,7 +8,7 @@ class ResendOtpModel extends ResendOtpEntity {
 
   factory ResendOtpModel.fromJson(Map<String, dynamic> json) {
     return ResendOtpModel(
-      status: json['status'] ?? 0,
+      status: json['status'] ,
       message: json['message'] ?? '',
     );
   }

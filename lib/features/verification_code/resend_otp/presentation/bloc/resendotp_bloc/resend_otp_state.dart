@@ -1,55 +1,38 @@
-// part of 'resend_otp_bloc.dart';
-
-// class ResendOtpState {
-//   final bool canResend;
-//   final int secondsRemaining;
-
-//   ResendOtpState({
-//     required this.canResend,
-//     required this.secondsRemaining,
-//   });
-
-//   ResendOtpState copyWith({
-//     bool? canResend,
-//     int? secondsRemaining,
-//   }) {
-//     return ResendOtpState(
-//       canResend: canResend ?? this.canResend,
-//       secondsRemaining: secondsRemaining ?? this.secondsRemaining,
-//     );
-//   }
-// }
-
-
-
 part of 'resend_otp_bloc.dart';
 
-enum ResendOtpStatus { initial, loading, success, error }
-
 class ResendOtpState {
-  final bool canResend;
-  final int secondsRemaining;
-  final ResendOtpStatus status;
-  final String message;
+  final bool isButtonEnabled;
+  final int duration;
+  final bool isLoading;
+  final String? errorMessage;
+  final String? successMessage;
 
   ResendOtpState({
-    required this.canResend,
-    required this.secondsRemaining,
-    required this.status,
-    required this.message,
+    required this.isButtonEnabled,
+    required this.duration,
+    this.isLoading = false,
+    this.errorMessage,
+    this.successMessage,
   });
 
+  factory ResendOtpState.initial() => ResendOtpState(
+        isButtonEnabled: false,
+        duration: 60,
+      );
+
   ResendOtpState copyWith({
-    bool? canResend,
-    int? secondsRemaining,
-    ResendOtpStatus? status,
-    String? message,
+    bool? isButtonEnabled,
+    int? duration,
+    bool? isLoading,
+    String? errorMessage,
+    String? successMessage,
   }) {
     return ResendOtpState(
-      canResend: canResend ?? this.canResend,
-      secondsRemaining: secondsRemaining ?? this.secondsRemaining,
-      status: status ?? this.status,
-      message: message ?? this.message,
+      isButtonEnabled: isButtonEnabled ?? this.isButtonEnabled,
+      duration: duration ?? this.duration,
+      isLoading: isLoading ?? this.isLoading,
+      errorMessage: errorMessage,
+      successMessage: successMessage,
     );
   }
 }

@@ -22,20 +22,39 @@ class LoginRepositoryImpl implements LoginRepository {
 
         return await remote.login(body);
     } on DioException catch (e) {
-      final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
 
-      if (msg == "User information does not with our record.") {
+       final responseData = e.response?.data;
+  
+  // الأولوية لـ errors إذا موجود
+  if (responseData != null && responseData["errors"] != null) {
+    final errors = responseData["errors"];
+    if (errors is List && errors.isNotEmpty) {
+      // نأخذ أول خطأ في القائمة
+      final error =errors[0].toString();
+      if (error == "User information does not with our record.") {
         throw Exception("معلومات تسجيل الدخول غير صحيحة");
       }
 
-      if (msg == "يجب تفعيل الحساب عبر رمز التحقق قبل تسجيل الدخول.") {
+      if (error == "يجب تفعيل الحساب عبر رمز التحقق قبل تسجيل الدخول.") {
         throw Exception("الحساب غير مفعل، يجب تفعيل الحساب عبر رمز التحقق قبل تسجيل الدخول.");
       }
 
-      if (msg == "User not found.") {
+      if (error == "User not found.") {
         throw Exception("المستخدم غير موجود");
       }
 
+      if (error == "Too many login attempts") {
+        throw Exception("تم تجاوز عدد محاولات الدخول المسموح بها ، الرجاء المحاولة لاحقاً");
+      }
+
+      if (error == "الحساب مقفل مؤقتاً بسبب محاولات دخول فاشلة متكررة.") {
+        throw Exception("الحساب مقفل مؤقتاً بسبب محاولات دخول فاشلة متكررة");
+      }
+    }
+  }
+  
+      final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
+  
       throw Exception(msg);
     }
   }

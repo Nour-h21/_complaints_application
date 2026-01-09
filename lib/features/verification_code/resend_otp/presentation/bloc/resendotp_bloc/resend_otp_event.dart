@@ -4,9 +4,9 @@ abstract class ResendOtpEvent {}
 
 class StartTimerEvent extends ResendOtpEvent {}
 
-class TickEvent extends ResendOtpEvent {}
+class TimerTickedEvent extends ResendOtpEvent {
+  final int duration;
+  TimerTickedEvent(this.duration);
+}
 
-class ResendPressedEvent extends ResendOtpEvent {}
-
-/// ⭐ الحدث الجديد عند انتهاء صلاحية الكود
-class ExpiredOtpEvent extends ResendOtpEvent {}
+class ResendCodePressedEvent extends ResendOtpEvent {}

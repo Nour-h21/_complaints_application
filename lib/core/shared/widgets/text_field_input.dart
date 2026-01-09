@@ -1,25 +1,43 @@
+import 'package:flutter/material.dart';
+
 import 'package:complaints_application/core/constants/layout/app_padding.dart';
 import 'package:complaints_application/core/constants/layout/app_radius.dart';
-import 'package:flutter/material.dart';
 
 import '../../utils/helpers/size_config.dart';
 
-class TextFieldInput extends StatelessWidget {
+class TextFieldInput extends StatefulWidget {
   final String hint;
-  final IconData icon;
+  final IconData? icon;
   final bool isPassword;
   final TextEditingController controller;
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
+  final String? prefixText;
 
   const TextFieldInput({
     super.key,
-    required this.controller,
     required this.hint,
-    required this.icon,
+     this.icon,
+    this.isPassword = false,
+    required this.controller,
     this.validator,
     this.keyboardType,
-    this.isPassword = false,});
+    this.prefixText,
+  });
+
+  @override
+  State<TextFieldInput> createState() => _TextFieldInputState();
+}
+
+class _TextFieldInputState extends State<TextFieldInput> {
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    // 👇 تهيئة الحالة فقط
+    _obscureText = widget.isPassword;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +52,18 @@ class TextFieldInput extends StatelessWidget {
         children: [
           Expanded(
             child: TextFormField(
-              controller: controller,
-              keyboardType: keyboardType,
-              validator: validator,
-              obscureText: isPassword,
+              controller: widget.controller,
+              keyboardType: widget.keyboardType,
+              validator: widget.validator,
+
+              /// ✅ المكان الصحيح
+              obscureText: widget.isPassword ? _obscureText : false,
+
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
+                prefixText: widget.prefixText,
                 border: InputBorder.none,
-                hintText: hint,
+                hintText: widget.hint,
                 hintStyle: TextStyle(
                   color: Colors.white70,
                   fontSize: SizeConfig.sp(13.5),
@@ -49,10 +71,32 @@ class TextFieldInput extends StatelessWidget {
               ),
             ),
           ),
-          Icon(
-            icon,
-            color: Colors.white70,
-            size: SizeConfig.w(22.5),
+
+          /// 👇 مساحة أيقونة ثابتة
+          SizedBox(
+            width: SizeConfig.w(40),
+            child: widget.isPassword
+                ? IconButton(
+                    icon: Icon(
+                      _obscureText
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: Colors.white70,
+                      size: SizeConfig.w(22.5),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  )
+                : widget.icon != null
+                    ? Icon(
+                        widget.icon,
+                        color: Colors.white70,
+                        size: SizeConfig.w(22.5),
+                      )
+                    : const SizedBox(),
           ),
         ],
       ),

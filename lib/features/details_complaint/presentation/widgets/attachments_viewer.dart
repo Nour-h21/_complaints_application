@@ -13,6 +13,7 @@ class AttachmentsViewer extends StatelessWidget {
   final List<String> attachments;
 
   const AttachmentsViewer({super.key, required this.attachments});
+  const AttachmentsViewer({super.key, required this.attachments});
 
   bool _isImage(String p) {
     p = p.toLowerCase();
@@ -126,12 +127,18 @@ class AttachmentsViewer extends StatelessWidget {
   }
 }
 
+
 class _FullImageView extends StatelessWidget {
   final String imagePath;
   const _FullImageView({required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
+    final isRemote =
+        imagePath.startsWith('http') || imagePath.startsWith('https');
+    final image = isRemote
+        ? Image.network(imagePath)
+        : Image.file(File(imagePath));
     final isRemote =
         imagePath.startsWith('http') || imagePath.startsWith('https');
     final image = isRemote

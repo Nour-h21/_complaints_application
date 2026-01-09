@@ -17,3 +17,9 @@ class LoginFailed extends LoginState {
 
   LoginFailed(this.message);
 }
+
+class LoginNotVerified extends LoginState {
+  final String emailOrPhone;
+
+  LoginNotVerified(this.emailOrPhone);
+}

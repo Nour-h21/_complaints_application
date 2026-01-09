@@ -1,5 +1,5 @@
 class ResendOtpEntity {
-  final bool status;
+  final int status;
   final String message;
 
   ResendOtpEntity({
