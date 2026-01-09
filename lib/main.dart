@@ -1,6 +1,5 @@
 import 'package:complaints_application/app/di/injection_container.dart';
 import 'package:complaints_application/app/routes/router.dart';
-import 'package:complaints_application/features/change_password/presentation/pages/forgot_password.dart';
 import 'package:complaints_application/features/details_complaint/presentation/bloc/details_complaint_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -10,24 +9,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'app/di/injection_container.dart' as di;
 import 'core/utils/helpers/size_config.dart';
-import 'features/UnreadNotificationsCount/presentation/bloc/bloc/unread_count_bloc.dart';
 import 'features/add_complaint/presentation/bloc/add_complaint_bloc.dart';
-import 'features/change_password/presentation/bloc/change_password_bloc.dart';
-import 'features/change_password/presentation/pages/check_code.dart';
-import 'features/change_password/presentation/pages/reset_password.dart';
-import 'features/notification/presentation/bloc/bloc/notifications_bloc.dart';
-import 'features/signup.dart';
-
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print("🔔 رسالة بالخلفية: ${message.notification?.title}");
-}
 import 'features/edit_complaint/presentation/bloc/edit_complaint_bloc.dart';
 import 'features/settings/bloc/theme_bloc.dart';
 import 'features/settings/bloc/theme_event.dart';
 import 'features/settings/localization_bloc/bloc/translate_bloc.dart';
 import 'features/settings/localization_bloc/bloc/translate_event.dart';
 import 'features/settings/localization_bloc/bloc/translate_state.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("🔔 رسالة بالخلفية: ${message.notification?.title}");
+}
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +51,7 @@ FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
   print('♻️ FCM TOKEN (onTokenRefresh): $newToken');
 });
 
-  runApp(const MyApp());
+ 
   await EasyLocalization.ensureInitialized();
   runApp(
     // DevicePreview(
@@ -103,13 +97,6 @@ class MyApp extends StatelessWidget {
           create: (_) => LocalizationBloc()..add(const LoadSavedLanguage()),
         ),
       ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        useInheritedMediaQuery: true,
-        // locale: DevicePreview.locale(context),
-        // builder: DevicePreview.appBuilder,
-        routerConfig: router,
-        // home: SignupLight(),
       child: BlocBuilder<ThemeBloc, ThemeData>(
         builder: (context, state) {
           return BlocBuilder<LocalizationBloc, LocalizationState>(
@@ -128,7 +115,7 @@ class MyApp extends StatelessWidget {
             },
           );
         },
-      ),
+      )
     );
   }
 }

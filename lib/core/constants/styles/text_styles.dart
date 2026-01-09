@@ -129,10 +129,10 @@ class AppTextStyles {
     fontFamily: 'Arima'
   );
 
-  static TextStyle medOliveGreenStyle = TextStyle(
-    fontSize: SizeConfig.sp(25),
-    color: AppColors.oliveGreen,
-    fontWeight: FontWeight.bold,
-  );
+  // static TextStyle medOliveGreenStyle = TextStyle(
+  //   fontSize: SizeConfig.sp(25),
+  //   color: AppColors.oliveGreen,
+  //   fontWeight: FontWeight.bold,
+  // );
 
 }

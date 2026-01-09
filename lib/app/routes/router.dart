@@ -5,11 +5,9 @@ import 'package:complaints_application/features/change_password/presentation/pag
 import 'package:complaints_application/features/change_password/presentation/pages/forgot_password.dart';
 import 'package:complaints_application/features/change_password/presentation/pages/reset_password.dart';
 import 'package:complaints_application/features/details_complaint/presentation/pages/details_complaint.dart';
-import 'package:complaints_application/features/logout/presentation/bloc/logout_bloc.dart';
 import 'package:complaints_application/features/edit_complaint/presentation/bloc/edit_complaint_bloc.dart';
 import 'package:complaints_application/features/my_complaints/presentation/pages/my_complaints.dart';
 import 'package:complaints_application/features/notification/presentation/bloc/bloc/notifications_bloc.dart';
-import 'package:complaints_application/features/notification/presentation/pages/notifications_n.dart';
 import 'package:complaints_application/features/signup/presentation/pages/signup.dart';
 import 'package:complaints_application/features/verification_code/presentation/pages/verification_code.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +35,6 @@ import '../di/injection_container.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/register',
-  initialLocation: '/SplashScreen',
   routes: [
     GoRoute(
       path: '/Onboarding',

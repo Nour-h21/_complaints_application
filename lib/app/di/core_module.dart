@@ -41,7 +41,7 @@ dio.interceptors.add(
       if (token != null && token.isNotEmpty) {
         
         options.headers['Authorization'] = 'Bearer $token';
-        options.headers['Authorization'] = 'Bearer 6|L3CXDr1JS8SUmaVnEIcLu84JfecJX2cmf0Ez6GSP2e0a96c7';
+        //options.headers['Authorization'] = 'Bearer 6|L3CXDr1JS8SUmaVnEIcLu84JfecJX2cmf0Ez6GSP2e0a96c7';
       }
 
       return handler.next(options);

@@ -38,7 +38,7 @@ class VerificationCode extends StatelessWidget {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message),backgroundColor: AppColors.primaryColor1.withOpacity(0.45),));
-              GoRouter.of(context).go('/MyComplaints'); // توجيه بعد التفعيل
+              GoRouter.of(context).go('/NavicationBar'); // توجيه بعد التفعيل
             }
           },
           child: CardImageOnGlass(

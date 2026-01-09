@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:complaints_application/app/di/injection_container.dart';
 import 'package:complaints_application/core/constants/urls/assets_url.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/Theme/app_colors.dart';
 import '../../../../core/Theme/app_gradient.dart';
@@ -10,10 +11,6 @@ import '../../../../core/constants/colors/colors.dart';
 import '../../../../core/constants/layout/app_padding.dart';
 import '../../../../core/constants/styles/text_styles.dart';
 import '../../../../core/utils/helpers/size_config.dart';
-import '../../../UnreadNotificationsCount/presentation/bloc/bloc/unread_count_bloc.dart';
-import '../../../UnreadNotificationsCount/presentation/bloc/bloc/unread_count_event.dart';
-import '../../../UnreadNotificationsCount/presentation/bloc/bloc/unread_count_state.dart';
-import '../../../UnreadNotificationsCount/presentation/widgets/notification_icon_button.dart';
 import '../bloc/my_complaint_bloc.dart';
 import '../bloc/my_complaint_event.dart';
 import '../bloc/my_complaint_state.dart';
@@ -185,7 +182,9 @@ class _MyComplaintsState extends State<MyComplaints> {
                         ),
                         SizedBox(width: SizeConfig.w(255)),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            GoRouter.of(context).push("/Notifications");
+                          },
                           icon: Icon(
                             Icons.notifications_rounded,
                             color: AppColors.beige,

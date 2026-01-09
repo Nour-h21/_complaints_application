@@ -13,7 +13,7 @@ class AttachmentsViewer extends StatelessWidget {
   final List<String> attachments;
 
   const AttachmentsViewer({super.key, required this.attachments});
-  const AttachmentsViewer({super.key, required this.attachments});
+  // const AttachmentsViewer({super.key, required this.attachments});
 
   bool _isImage(String p) {
     p = p.toLowerCase();
@@ -139,11 +139,11 @@ class _FullImageView extends StatelessWidget {
     final image = isRemote
         ? Image.network(imagePath)
         : Image.file(File(imagePath));
-    final isRemote =
-        imagePath.startsWith('http') || imagePath.startsWith('https');
-    final image = isRemote
-        ? Image.network(imagePath)
-        : Image.file(File(imagePath));
+    // final isRemote =
+    //     imagePath.startsWith('http') || imagePath.startsWith('https');
+    // final image = isRemote
+    //     ? Image.network(imagePath)
+    //     : Image.file(File(imagePath));
 
     return Scaffold(
       backgroundColor: Colors.black,
