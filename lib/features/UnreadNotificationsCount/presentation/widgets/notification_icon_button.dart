@@ -38,11 +38,11 @@ class NotificationsIconButton extends StatelessWidget {
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: AppColors.red,
-                    // borderRadius: BorderRadius.circular(25),//12
-                    borderRadius: AppRadius.circularMedium,
+                    borderRadius: BorderRadius.circular(25),//12
+                    // borderRadius: AppRadius.circularMedium,
                   ),
                   constraints:
-                      const BoxConstraints(minWidth: 10, minHeight: 10),//18
+                      const BoxConstraints(minWidth: 12, minHeight: 10),//18
                   child: Text(
                     '$count',
                     style: TextStyle(

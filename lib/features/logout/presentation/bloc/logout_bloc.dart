@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../app/di/injection_container.dart';
 import '../../domain/usecase/logout_usecase.dart';
 import 'logout_event.dart';
 import 'logout_state.dart';
@@ -12,7 +13,9 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
       emit(LogoutLoading());
       try {
         final result = await useCase();
-        await StorageService.clearToken(); // حذف التوكن
+        final storage = getIt<StorageService>();
+
+        await storage.clearToken(); // حذف التوكن
         emit(LogoutSuccess(result.message));
       } catch (e) {
         emit(LogoutError(e.toString()));

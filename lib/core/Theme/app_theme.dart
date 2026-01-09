@@ -22,6 +22,12 @@ class AppTheme {
             Colors.green.shade100,
           ],
         ),
+        elevatedGradientAuth: LinearGradient(
+          colors: [
+             Color.fromARGB(255, 240, 238, 214),
+             Color.fromARGB(255, 174, 201, 175),
+          ],
+        )
       ),
 
       AppTextStyleTheme(
@@ -64,6 +70,8 @@ class AppTheme {
         navBrrBackground: AppColors.lowGreen,
         floatingButtonBackground: AppColors.oliveGreen,
         floatingButtonSplashColor: AppColors.oliveGreen,
+        hindnoaccount: AppColors.armyGreen.withOpacity(0.5),
+        hindTextFieldInput: AppColors.oliveGreen.withOpacity(0.65),
       ),
     ],
 
@@ -103,6 +111,13 @@ class AppTheme {
           ],
         ),
         elevatedGradient: LinearGradient(
+          colors: [
+            const Color.fromARGB(255, 253, 250, 218),
+            Colors.green.shade100,
+            AppColors.armyGreen,
+          ],
+        ),
+        elevatedGradientAuth: LinearGradient(
           colors: [
             const Color.fromARGB(255, 253, 250, 218),
             Colors.green.shade100,
@@ -164,6 +179,8 @@ class AppTheme {
         navBrrBackground: AppColors.armyGreen2,
         floatingButtonBackground: AppColors.oliveGreen,
         floatingButtonSplashColor: AppColors.oliveGreen,
+        hindnoaccount : AppColors.primaryColor,
+        hindTextFieldInput:AppColors.primaryColor.withOpacity(0.4),
       ),
     ],
 

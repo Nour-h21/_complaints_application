@@ -1,9 +1,13 @@
 import 'package:complaints_application/core/constants/layout/app_space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app/di/injection_container.dart';
 import '../../core/constants/colors/colors.dart';
+import '../UnreadNotificationsCount/presentation/bloc/bloc/unread_count_bloc.dart';
+import '../UnreadNotificationsCount/presentation/bloc/bloc/unread_count_event.dart';
 
 class SuccessPage extends StatelessWidget {
   const SuccessPage({super.key});
@@ -52,7 +56,7 @@ class SuccessPage extends StatelessWidget {
               textDirection: TextDirection.rtl,
               child: TextButton(
                 onPressed: () {
-               GoRouter.of(context).pushReplacement('/NavicationBar');
+                  GoRouter.of(context).pushReplacement('/NavicationBar');
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

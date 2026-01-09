@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/Theme/app_colors.dart';
 import '../bloc/logout_bloc.dart';
 import '../bloc/logout_event.dart';
 import '../bloc/logout_state.dart';
@@ -16,8 +17,8 @@ class LogoutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final IconData logoutIcon = Platform.isIOS
         ? CupertinoIcons.square_arrow_right
-        : Icons.logout;
-
+        : Icons.logout_outlined;
+    final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return BlocListener<LogoutBloc, LogoutState>(
       listener: (context, state) {
         if (state is LogoutSuccess) {
@@ -25,14 +26,14 @@ class LogoutButton extends StatelessWidget {
         }
 
         if (state is LogoutError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       child: IconButton(
         tooltip: 'تسجيل الخروج',
-        icon: Icon(logoutIcon),
+        icon: Icon(logoutIcon, color: colors.iconColor, size: 30),
         onPressed: () {
           context.read<LogoutBloc>().add(LogoutRequested());
         },

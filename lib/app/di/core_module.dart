@@ -1,13 +1,13 @@
 import 'package:complaints_application/app/di/injection_container.dart';
 import 'package:complaints_application/core/constants/urls/api_url.dart';
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/services/storage_service.dart';
 
 Future<void> initCoreModule() async {
 
-getIt.registerSingleton(await SharedPreferences.getInstance());
+// getIt.registerSingleton(await SharedPreferences.getInstance());
 
  getIt.registerLazySingleton<Dio>((){
   final dio = Dio(
@@ -35,9 +35,10 @@ dio.interceptors.add(
       if (authFreeEndpoints.any((e) => options.path.contains(e))) {
         return handler.next(options);
       }
-
+final storage = getIt<StorageService>();
       // غير هيك → نضيف التوكن
-      final token = await getIt<StorageService>().getToken();
+      final token = await storage.getToken();
+      print("ppppppppppppppppppppppppppppppppppppppppppppp${token}");
       if (token != null && token.isNotEmpty) {
         
         options.headers['Authorization'] = 'Bearer $token';

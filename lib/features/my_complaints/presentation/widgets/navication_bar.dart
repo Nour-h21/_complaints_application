@@ -1,13 +1,16 @@
-
 import 'package:complaints_application/features/add_complaint/presentation/pages/add_complaint.dart';
 import 'package:complaints_application/features/my_complaints/presentation/pages/my_complaints.dart';
 import 'package:complaints_application/features/settings/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../app/di/injection_container.dart';
 import '../../../../core/Theme/app_colors.dart';
 import '../../../../core/Theme/app_gradient.dart';
 import '../../../../core/Theme/app_text_style.dart';
 import '../../../../core/constants/colors/colors.dart';
+import '../../../logout/presentation/bloc/logout_bloc.dart';
 
 class NavicationBar extends StatefulWidget {
   const NavicationBar({super.key});
@@ -20,9 +23,11 @@ class _HomeScreenState extends State<NavicationBar> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-   MyComplaints(),
-   AddComplaint(),
-   Settings()
+    // GoRouter.go('/MyComplaints'),
+    MyComplaints(),
+    AddComplaint(),
+   BlocProvider(create: (context) => getIt<LogoutBloc>(),
+        child: Settings(),),
   ];
 
   void _onItemTapped(int index) {
@@ -38,11 +43,12 @@ class _HomeScreenState extends State<NavicationBar> {
     final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return Scaffold(
       body: _pages[_selectedIndex],
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            _selectedIndex = 1; 
+            _selectedIndex = 1;
           });
         },
         backgroundColor: colors.floatingButtonBackground,
@@ -54,17 +60,15 @@ class _HomeScreenState extends State<NavicationBar> {
       ),
       bottomNavigationBar: Ink(
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            AppColors.offWhite,
-            AppColors.lowGreen,
-           
-          ]),
+          gradient: LinearGradient(
+            colors: [AppColors.offWhite, AppColors.lowGreen],
+          ),
         ),
         child: BottomAppBar(
           shape: const CircularNotchedRectangle(),
           notchMargin: 6,
           height: 69,
-          color:colors.navBrrBackground,
+          color: colors.navBrrBackground,
           child: SizedBox(
             height: 70,
             child: Row(
@@ -78,10 +82,10 @@ class _HomeScreenState extends State<NavicationBar> {
                     index: 0,
                   ),
                 ),
-        
+
                 // مسافة للزر البارز
                 const Expanded(child: SizedBox()),
-        
+
                 // العنصر الرابع
                 Expanded(
                   child: _buildNavItem(
@@ -112,14 +116,18 @@ class _HomeScreenState extends State<NavicationBar> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: isSelected ? AppColors.oliveGreen : AppColors.offWhite, size: 24),
-           const SizedBox(height: 4),
+            Icon(
+              icon,
+              color: isSelected ? AppColors.oliveGreen : AppColors.offWhite,
+              size: 24,
+            ),
+            const SizedBox(height: 4),
             Text(
               label,
               style: TextStyle(
                 fontSize: 12,
                 fontFamily: 'Arima',
-                fontWeight:FontWeight.w600,
+                fontWeight: FontWeight.w600,
                 color: isSelected ? AppColors.oliveGreen : AppColors.offWhite,
               ),
             ),

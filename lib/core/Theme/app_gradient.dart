@@ -4,22 +4,24 @@ import 'package:flutter/material.dart';
 class AppGradients extends ThemeExtension<AppGradients> {
   final LinearGradient onboardingGradient;
   final LinearGradient elevatedGradient;
+  final LinearGradient elevatedGradientAuth;
 
   const AppGradients({
     required this.onboardingGradient,
-    required this.elevatedGradient
+    required this.elevatedGradient,
+    required this.elevatedGradientAuth,
   });
 
   @override
   AppGradients copyWith({
     LinearGradient? onboardingGradient,
     LinearGradient? elevatedGradient,
+    LinearGradient? elevatedGradientAuth,
   }) {
     return AppGradients(
-      onboardingGradient:
-          onboardingGradient ?? this.onboardingGradient,
-           elevatedGradient:
-          elevatedGradient ?? this.elevatedGradient,
+      onboardingGradient: onboardingGradient ?? this.onboardingGradient,
+      elevatedGradient: elevatedGradient ?? this.elevatedGradient,
+      elevatedGradientAuth: elevatedGradientAuth ?? this.elevatedGradientAuth,
     );
   }
 
@@ -40,8 +42,11 @@ class AppGradients extends ThemeExtension<AppGradients> {
         other.elevatedGradient,
         t,
       )!,
+         elevatedGradientAuth: LinearGradient.lerp(
+        elevatedGradient,
+        other.elevatedGradient,
+        t,
+      )!,
     );
   }
-  
- 
 }

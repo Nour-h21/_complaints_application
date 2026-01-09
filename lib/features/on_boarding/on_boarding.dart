@@ -88,7 +88,7 @@ class FirstPage extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    GoRouter.of(context).push('/NavicationBar');
+                    GoRouter.of(context).push('/register');
                   },
                   child: Text('Skip', style: AppTextStyles.medBeigeStyle),
                 ),
@@ -200,7 +200,7 @@ class SecondPage extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    GoRouter.of(context).push('/NavicationBar');
+                    GoRouter.of(context).push('/register');
                   },
                   child: Text('Skip', style: AppTextStyles.medBeigeStyle),
                 ),
@@ -358,7 +358,7 @@ class ThirdPage extends StatelessWidget {
                       ),
 
                       onPressed: () {
-                        GoRouter.of(context).push('/NavicationBar');
+                        GoRouter.of(context).push('/register');
                       },
                       child: Ink(
                         height: SizeConfig.h(45),

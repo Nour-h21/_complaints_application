@@ -9,7 +9,7 @@ import '../../../../core/constants/layout/app_space.dart';
 import '../../../../core/constants/strings/texts.dart';
 import '../../../../core/constants/styles/text_styles.dart';
 import '../../../../core/shared/widgets/card_image_on_glass.dart';
-import '../../../../core/shared/widgets/gradient_elevated_button.dart';
+import '../../../../core/shared/widgets/gradient_elevated_button1.dart';
 import '../../../../core/utils/helpers/size_config.dart';
 import '../../resend_otp/presentation/bloc/resendotp_bloc/resend_otp_bloc.dart';
 import '../../verify_otp/presentation/bloc/verifyotp_bloc/otp_bloc.dart';
@@ -33,7 +33,7 @@ class VerificationCode extends StatelessWidget {
             } else if (state is OtpFailed) {
               ScaffoldMessenger.of(
                 context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
+              ).showSnackBar(SnackBar(content: Text(state.message),backgroundColor: AppColors.oliveGreen2.withOpacity(0.45),));
             } else if (state is OtpSuccess) {
               ScaffoldMessenger.of(
                 context,
@@ -44,23 +44,23 @@ class VerificationCode extends StatelessWidget {
           child: CardImageOnGlass(
             width: 330,
             child: Directionality(
-              textDirection: TextDirection.rtl,
+              textDirection: TextDirection.ltr,
               child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppSpaces.verticalSmall,
-                    AppSpaces.verticalTiny,
+                    AppSpaces.verticalMedium,
+                    // AppSpaces.verticalTiny,
                     Text(
                       AppTexts.verificationCode,
-                      style: AppTextStyles.medwhiteStyle
+                      style: AppTextStyles.bigOliveGreenStyle
                     ),
                     AppSpaces.verticalTiny,
                     Text(
                       AppTexts.enterVerificationCode,
-                      style: AppTextStyles.medWhite70Style,//no fontWeight
+                      style: AppTextStyles.medWhite70WieghtStyle,//no fontWeight
                       textAlign: TextAlign.center,
                     ),
                     AppSpaces.verticalMedSmall,
@@ -105,7 +105,7 @@ class VerificationCode extends StatelessWidget {
       
                     AppSpaces.verticalLarge,
       
-                    GradientElevatedButton(
+                    GradientElevatedButton1(
                       onPressed: () {
                         final otpCode = otpController.text.trim();
                         if (otpCode.length == 6) {

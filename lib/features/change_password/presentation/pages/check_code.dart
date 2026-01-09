@@ -9,7 +9,7 @@ import '../../../../core/constants/layout/app_space.dart';
 import '../../../../core/constants/strings/texts.dart';
 import '../../../../core/constants/styles/text_styles.dart';
 import '../../../../core/shared/widgets/card_image_on_glass.dart';
-import '../../../../core/shared/widgets/gradient_elevated_button.dart';
+import '../../../../core/shared/widgets/gradient_elevated_button1.dart';
 import '../../../../core/utils/helpers/size_config.dart';
 import '../bloc/change_password_bloc.dart';
 import '../bloc/change_password_event.dart';
@@ -37,29 +37,29 @@ class CheckCode extends StatelessWidget {
               print('oooooooooo${state.message}');
             } else if (state is CheckCodeSuccess) {
               print('oolll');
-              context.go('/resetPassword');
+              context.push('/resetPassword');
             }
           },
           child: CardImageOnGlass(
             width: 330,
             child: Directionality(
-              textDirection: TextDirection.rtl,
+              textDirection: TextDirection.ltr,
               child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppSpaces.verticalSmall,
-                    AppSpaces.verticalTiny,
+                    AppSpaces.verticalMedium,
+                    // AppSpaces.verticalTiny,
                     Text(
                       AppTexts.verificationEmail,
-                      style: AppTextStyles.medwhiteStyle,
+                      style: AppTextStyles.bigOliveGreenStyle,
                     ),
                     AppSpaces.verticalTiny,
                     Text(
                       AppTexts.enterCode,
-                      style: AppTextStyles.medWhite70Style, //no fontWeight
+                      style: AppTextStyles.medWhite70WieghtStyle,
                       textAlign: TextAlign.center,
                     ),
                     AppSpaces.verticalMedSmall,
@@ -104,7 +104,7 @@ class CheckCode extends StatelessWidget {
 
                     AppSpaces.verticalLarge,
 
-                    GradientElevatedButton(
+                    GradientElevatedButton1(
                       onPressed: () {
                         final otpCode = code.text.trim();
                         if (otpCode.length == 6) {

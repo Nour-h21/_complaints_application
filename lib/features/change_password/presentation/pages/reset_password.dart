@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/colors/colors.dart';
 import '../../../../core/constants/strings/texts.dart';
 import '../../../../core/shared/widgets/card_image_on_glass.dart';
-import '../../../../core/shared/widgets/gradient_elevated_button.dart';
+import '../../../../core/shared/widgets/gradient_elevated_button1.dart';
 import '../../../../core/shared/widgets/text_field_input.dart';
 import '../../../../core/utils/helpers/size_config.dart';
 import '../bloc/change_password_bloc.dart';
@@ -38,31 +38,31 @@ class ResetPassword extends StatelessWidget {
               ).showSnackBar(SnackBar(content: Text(state.message)));
               print('llooo${state.message}');
             } else if (state is ResetPasswordSuccess) {
-              GoRouter.of(context).go('/logIn');
+              GoRouter.of(context).push('/logIn');
             }
           },
           child: CardImageOnGlass(
             width: 330,
             child: Directionality(
-              textDirection: TextDirection.rtl,
+              textDirection: TextDirection.ltr,
               child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppSpaces.verticalSmall,
-                    AppSpaces.verticalTiny,
+                    AppSpaces.verticalMedium,
+                    // AppSpaces.verticalTiny,
                     Text(
                       AppTexts.enterNewPassword,
-                      style: AppTextStyles.medwhiteStyle,
+                      style: AppTextStyles.bigOliveGreenStyle,
                     ),
 
                     AppSpaces.verticalTiny,
 
                     Text(
                       AppTexts.enterNewPasswordhint,
-                      style: TextStyle(color: AppColors.primaryColor),
+                      style: AppTextStyles.medWhite70WieghtStyle,
                     ),
 
                     AppSpaces.verticalSmall,
@@ -89,7 +89,7 @@ class ResetPassword extends StatelessWidget {
                     ),
                     AppSpaces.verticalLarge,
                     // AppSpaces.verticalSmall,
-                    GradientElevatedButton(
+                    GradientElevatedButton1(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           context.read<ChangePasswordBloc>().add(

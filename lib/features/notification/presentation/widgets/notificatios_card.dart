@@ -1,3 +1,4 @@
+import 'package:complaints_application/core/constants/layout/app_space.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/colors/colors.dart';
@@ -13,26 +14,39 @@ class NotificatiosCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: SizeConfig.w(200),
-      height: SizeConfig.h(50),//220
-      decoration: BoxDecoration(
-        borderRadius: AppRadius.circularMedium,
-        color: AppColors.beige.withOpacity(0.15),
-        border: Border.all(
-          color: AppColors.whiteWithOpacity3,
-          width: SizeConfig.w(1.5),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-       crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            notifications.title,
-            style: AppTextStyles.medWhite70Style,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Container(
+        width: SizeConfig.w(200),
+        height: SizeConfig.h(100),//220
+        decoration: BoxDecoration(
+          borderRadius: AppRadius.circularSmall,
+          color: AppColors.beige.withOpacity(0.15),
+          border: Border.all(
+            color: AppColors.whiteWithOpacity3,
+            width: SizeConfig.w(1.5),
           ),
-        ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+           crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppSpaces.verticalTiny,
+               Text(
+                notifications.body,
+                style: AppTextStyles.smallOliveGreen2Style,
+              ),
+              AppSpaces.verticalTiny,
+              Text(
+                notifications.title,
+                style: AppTextStyles.medWhite70Style,
+              ),
+                AppSpaces.verticalTiny,
+            ],
+          ),
+        ),
       ),
     );
   }

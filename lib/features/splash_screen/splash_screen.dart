@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app/di/injection_container.dart';
 import '../../core/constants/colors/colors.dart';
+import '../../core/services/storage_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,34 +21,91 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _fadeAnimation;
+  late final StorageService storageService;
+  
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   _controller = AnimationController(
+  //     duration: const Duration(milliseconds: 1500),
+  //     vsync: this,
+  //   );
+
+  //   _scaleAnimation = TweenSequence<double>([
+  //     TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.1), weight: 50),
+  //     TweenSequenceItem(tween: Tween(begin: 1.1, end: 1.0), weight: 50),
+  //   ]).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+
+  //   _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+  //     CurvedAnimation(
+  //       parent: _controller,
+  //       curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
+  //     ),
+  //   );
+
+  //   _controller.forward();
+
+  //   Future.delayed(const Duration(seconds: 4), () {
+  //     GoRouter.of(context).go('/Onboarding');
+  //   });
+  // }
+
 
   @override
   void initState() {
     super.initState();
+    storageService = getIt<StorageService>();
 
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 1500),
-      vsync: this,
-    );
-
+    // Animations
+    _controller = AnimationController(duration: const Duration(milliseconds: 1500), vsync: this);
     _scaleAnimation = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.1), weight: 50),
       TweenSequenceItem(tween: Tween(begin: 1.1, end: 1.0), weight: 50),
     ]).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
-      ),
+      CurvedAnimation(parent: _controller, curve: const Interval(0.5, 1.0)),
     );
-
     _controller.forward();
 
-    Future.delayed(const Duration(seconds: 4), () {
-      GoRouter.of(context).go('/Onboarding');
-    });
+    navigateAfterSplash();
   }
+
+  // Future<void> navigateAfterSplash() async {
+  //   await Future.delayed(const Duration(seconds: 3)); // مدة السبلاتش
+
+  //   if (!mounted) return;
+
+  //   if (storageService.isFirstLaunch) {
+  //     // أول مرة → Onboarding
+  //     GoRouter.of(context).go('/Onboarding');
+  //     await storageService.setFirstLaunchDone(); // حفظ أن المستخدم شاف onboarding
+  //   } else {
+  //     // مش أول مرة → Auth أو Home
+  //     if (storageService.isLoggedIn) {
+        
+  //       GoRouter.of(context).go('/NavicationBar'); // Home
+  //     } else {
+  //       GoRouter.of(context).go('/register'); // Auth
+  //     }
+  //   }
+  // }
+
+  Future<void> navigateAfterSplash() async {
+  await Future.delayed(const Duration(seconds: 3));
+
+  if (!mounted) return;
+
+  if (storageService.isFirstLaunch) {
+    GoRouter.of(context).go('/Onboarding');
+    await storageService.setFirstLaunchDone();
+  } else if (!storageService.isLoggedIn) {
+    GoRouter.of(context).go('/register'); // لا مستخدم → register
+  } else {
+    GoRouter.of(context).go('/NavicationBar'); // مستخدم موجود → Home
+  }
+}
 
   @override
   void dispose() {
@@ -92,7 +151,7 @@ class _SplashScreenState extends State<SplashScreen>
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         image: DecorationImage(
-                          image: AssetImage(AppAssets.logoWithoutBackground),
+                          image: AssetImage(AppAssets.logoWitBackground),
                         ),
                         boxShadow: [
                           BoxShadow(

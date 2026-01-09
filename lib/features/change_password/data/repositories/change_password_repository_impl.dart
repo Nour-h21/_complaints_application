@@ -19,14 +19,45 @@ class ChangePasswordRepositoryImpl implements ChangePasswordRepository {
       print('$body');
       return await remote.forgotPassword(body);
     } on DioException catch (e) {
-      final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
+final responseData = e.response?.data;
 
-      if (msg == "The selected email is invalid.") {
+      if (responseData != null && responseData["errors"] != null) {
+        final errors = responseData["errors"];
+
+
+        if (errors is Map<String, dynamic>) {
+   
+          if (errors.containsKey("email")) {
+            final otpErrors = errors["email"];
+
+            if (otpErrors is List && otpErrors.isNotEmpty) {
+              final errorMessage = otpErrors.first.toString();
+
+       
+               if (errorMessage == "The selected email is invalid.") {
         throw Exception("البريد الإلكتروني غير مسجل مسبقًا");
       }
+       
+              throw Exception(errorMessage);
+            }
+          }
+        }
+      }
+
+      // في حال ما كان في errors
+      final msg = responseData?["message"] ?? "حدث خطأ غير متوقع";
       throw Exception(msg);
     }
   }
+      
+      // final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
+
+      // if (msg == "The selected email is invalid.") {
+      //   throw Exception("البريد الإلكتروني غير مسجل مسبقًا");
+      // }
+      // throw Exception(msg);
+  //   }
+  // }
 
   @override
   Future<CheckCodeEntity> checkCode({required String code}) async {
@@ -36,14 +67,45 @@ class ChangePasswordRepositoryImpl implements ChangePasswordRepository {
       print('$body');
       return await remote.checkCode(body);
     } on DioException catch (e) {
-      final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
 
-      if (msg == "The selected code is invalid.") {
+      final responseData = e.response?.data;
+
+      if (responseData != null && responseData["errors"] != null) {
+        final errors = responseData["errors"];
+
+
+        if (errors is Map<String, dynamic>) {
+   
+          if (errors.containsKey("code")) {
+            final otpErrors = errors["code"];
+
+            if (otpErrors is List && otpErrors.isNotEmpty) {
+              final errorMessage = otpErrors.first.toString();
+
+       
+               if (errorMessage == "The selected code is invalid.") {
         throw Exception(" الرمز المدخل غير صالح");
       }
+       
+              throw Exception(errorMessage);
+            }
+          }
+        }
+      }
+
+      // في حال ما كان في errors
+      final msg = responseData?["message"] ?? "حدث خطأ غير متوقع";
       throw Exception(msg);
     }
   }
+  //     final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
+
+  //     if (msg == "The selected code is invalid.") {
+  //       throw Exception(" الرمز المدخل غير صالح");
+  //     }
+  //     throw Exception(msg);
+  //   }
+  // }
 
    @override
   Future<ResetPasswordEntity> resetPassword({required String code, required String password,required String confirmPassword}) async {
@@ -53,12 +115,45 @@ class ChangePasswordRepositoryImpl implements ChangePasswordRepository {
       print('$body');
       return await remote.resetPassword(code, body);
     } on DioException catch (e) {
-      final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
 
-      if (msg == "The selected code is invalid.") {
+
+      final responseData = e.response?.data;
+
+      if (responseData != null && responseData["errors"] != null) {
+        final errors = responseData["errors"];
+
+
+        if (errors is Map<String, dynamic>) {
+   
+          if (errors.containsKey("code")) {
+            final otpErrors = errors["code"];
+
+            if (otpErrors is List && otpErrors.isNotEmpty) {
+              final errorMessage = otpErrors.first.toString();
+
+       
+               if (errorMessage == "The selected code is invalid.") {
         throw Exception(" الرمز المدخل غير صالح");
       }
+       
+              throw Exception(errorMessage);
+            }
+          }
+        }
+      }
+
+      // في حال ما كان في errors
+      final msg = responseData?["message"] ?? "حدث خطأ غير متوقع";
       throw Exception(msg);
     }
   }
+  
+      // final msg = e.response?.data["message"] ?? "حدث خطأ غير متوقع";
+
+  //     if (msg == "The selected code is invalid.") {
+  //       throw Exception(" الرمز المدخل غير صالح");
+  //     }
+  //     throw Exception(msg);
+  //   }
+  // }
 }

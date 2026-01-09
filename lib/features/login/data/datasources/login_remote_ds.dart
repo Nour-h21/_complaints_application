@@ -12,7 +12,7 @@ abstract class LoginRemoteDs {
 class LoginRemoteDsImpl implements LoginRemoteDs {
   final Dio dio;
 
-  LoginRemoteDsImpl(this.dio,);
+  LoginRemoteDsImpl(this.dio);
 
   @override
   Future<LoginModel> login(Map<String, dynamic> body) async {
@@ -22,9 +22,13 @@ class LoginRemoteDsImpl implements LoginRemoteDs {
 
     final response = await dio.post("signin", data: body);
     final loginResponse = LoginModel.fromJson(response.data);
+    final storage = getIt<StorageService>();
 
-    await StorageService.saveToken(loginResponse.token);
-    await StorageService.saveUserId(loginResponse.id.toString());
+    await storage.saveToken(loginResponse.token);
+    await storage.saveUserId(loginResponse.id.toString());
+
+    // await StorageService.saveToken(loginResponse.token);
+    // await StorageService.saveUserId(loginResponse.id.toString());
     getIt<FcmTokenHandler>().init(loginResponse.id.toString());
     return LoginModel.fromJson(response.data);
   }

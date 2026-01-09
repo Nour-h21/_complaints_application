@@ -10,7 +10,11 @@ import '../../../../core/Theme/app_text_style.dart';
 import '../../../../core/constants/colors/colors.dart';
 import '../../../../core/constants/layout/app_padding.dart';
 import '../../../../core/constants/styles/text_styles.dart';
+import '../../../../core/shared/pages/gradient_background.dart';
 import '../../../../core/utils/helpers/size_config.dart';
+import '../../../UnreadNotificationsCount/presentation/bloc/bloc/unread_count_bloc.dart';
+import '../../../UnreadNotificationsCount/presentation/bloc/bloc/unread_count_event.dart';
+import '../../../UnreadNotificationsCount/presentation/widgets/notification_icon_button.dart';
 import '../bloc/my_complaint_bloc.dart';
 import '../bloc/my_complaint_event.dart';
 import '../bloc/my_complaint_state.dart';
@@ -141,10 +145,15 @@ class MyComplaints extends StatefulWidget {
 }
 
 class _MyComplaintsState extends State<MyComplaints> {
+
   @override
+    void initState() {
+    super.initState();
+  // 🔔 تشغيل تحديث عداد الإشعارات
+  context.read<UnreadCountBloc>().add(StartUnreadCountPolling());
+}
   @override
   Widget build(BuildContext context) {
-    final gradients = Theme.of(context).extension<AppGradients>()!;
     final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
     final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return BlocProvider(
@@ -152,10 +161,7 @@ class _MyComplaintsState extends State<MyComplaints> {
       child: Builder(
         builder: (context) {
           return Scaffold(
-            body: Container(
-              decoration: BoxDecoration(
-                gradient: gradients.onboardingGradient,
-              ),
+            body: GradientBackground(
               child: Padding(
                 padding: EdgeInsets.only(top: 42,left: 20,right: 18),
                 child: Column(
@@ -181,16 +187,17 @@ class _MyComplaintsState extends State<MyComplaints> {
                           ),
                         ),
                         SizedBox(width: SizeConfig.w(255)),
-                        IconButton(
-                          onPressed: () {
-                            GoRouter.of(context).push("/Notifications");
-                          },
-                          icon: Icon(
-                            Icons.notifications_rounded,
-                            color: AppColors.beige,
-                            size: 26,
-                          ),
-                        ),
+                        // IconButton(
+                        //   onPressed: () {
+                        //     GoRouter.of(context).push("/Notifications");
+                        //   },
+                        //   icon: Icon(
+                        //     Icons.notifications_rounded,
+                        //     color: AppColors.beige,
+                        //     size: 26,
+                        //   ),
+                        // ),
+                        NotificationsIconButton(),
                       ],
                     ),
 

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import '../../../../app/di/injection_container.dart';
 import '../../../../core/services/storage_service.dart';
 import '../models/logout_model.dart';
 
@@ -13,8 +14,10 @@ class LogoutRemoteDsImpl implements LogoutRemoteDs {
 
   @override
   Future<LogoutModel> logout() async {
-    final token = await StorageService().getToken();
+    // final token = await StorageService().getToken();
+final storage = getIt<StorageService>();
 
+final token = await storage.getToken();
     final response = await dio.get(
       'logout',
       // options: Options(

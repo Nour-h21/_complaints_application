@@ -15,18 +15,21 @@ class SignupRemoteDsImpl implements SignupRemoteDs {
 
   @override
   Future<SignupModel> signup(Map<String, dynamic> body) async {
-    try{
-    final response = await dio.post("register", data: body);
-  print( SignupModel.fromJson(response.data));
-    await StorageService.saveUserId(response.data["data"]["id"].toString());
-    final userId = await StorageService.getUserId();
-    print("id = $userId");
+    try {
+      final response = await dio.post("register", data: body);
+      print(SignupModel.fromJson(response.data));
+      final storage = getIt<StorageService>();
 
-    getIt<FcmTokenHandler>().init(userId!);
-    return SignupModel.fromJson(response.data);
-    }
-    catch(e , stackTrace){
-       if (e is DioException) {
+      await storage.saveToken(response.data["data"]["id"].toString());
+      final userId = await storage.getUserId();
+      // await StorageService.saveUserId(response.data["data"]["id"].toString());
+      // final userId = await StorageService.getUserId();
+      print("id = $userId");
+
+      getIt<FcmTokenHandler>().init(userId!);
+      return SignupModel.fromJson(response.data);
+    } catch (e, stackTrace) {
+      if (e is DioException) {
         print("🔥 DIO ERROR: ${e.response?.data}");
         print("🔥 STATUS CODE: ${e.response?.statusCode}");
         print("🔥 MESSAGE: ${e.message}");
@@ -35,8 +38,6 @@ class SignupRemoteDsImpl implements SignupRemoteDs {
         print("🔥 StackTrace: $stackTrace");
       }
       rethrow;
-    
     }
-    
   }
 }

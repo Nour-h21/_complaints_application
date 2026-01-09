@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../core/services/storage_service.dart';
 import 'add_complaint_module.dart';
 import 'change_password_module.dart';
 import 'logout_module.dart';
@@ -32,4 +34,15 @@ Future<void> init() async {
   await initLogOutModule();
   await initChangePasswordModule();
   await initEditcomplaintModule();
+}
+
+Future<void> setupDI() async {
+  // 1️⃣ SharedPreferences
+  final prefs = await SharedPreferences.getInstance();
+  getIt.registerSingleton<SharedPreferences>(prefs);
+
+  // 2️⃣ StorageService
+  getIt.registerSingleton<StorageService>(
+    StorageService(getIt<SharedPreferences>()),
+  );
 }

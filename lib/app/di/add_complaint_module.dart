@@ -33,7 +33,7 @@ Future<void> initAddcomplaintModule() async {
     getIt.registerFactory(() => AddComplaintBloc(submitUseCase: getIt()));
   }
 
-    // StorageService
-  getIt.registerLazySingleton<StorageService>(() => StorageService());
+  //   // StorageService
+  // getIt.registerLazySingleton<StorageService>(() => StorageService());
 
 }

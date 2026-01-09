@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'app/di/injection_container.dart' as di;
+import 'core/services/storage_service.dart';
 import 'core/utils/helpers/size_config.dart';
 import 'features/add_complaint/presentation/bloc/add_complaint_bloc.dart';
 import 'features/edit_complaint/presentation/bloc/edit_complaint_bloc.dart';
@@ -25,8 +26,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await setupDI();
   await di.init();
+
+  //   final storage = getIt<StorageService>();
+  // await storage.setFirstLaunchToTrue(); // Force show Onboarding
+  // final storage = getIt<StorageService>();
+  // await storage.clearToken();
 
   await Firebase.initializeApp();
 
@@ -92,6 +98,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => getIt<EditComplaintBloc>()),
 
         BlocProvider(create: (context) => ThemeBloc()..add(InitThemeEvent())),
+
+        // BlocProvider(
+        //     create: (_) =>
+        //         getIt<UnreadCountBloc>()..add(FetchUnreadCountEvent()),
+        //   ),
 
         BlocProvider(
           create: (_) => LocalizationBloc()..add(const LoadSavedLanguage()),

@@ -7,6 +7,7 @@ import 'package:complaints_application/features/settings/localization_bloc/bloc/
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/Theme/app_colors.dart';
 import '../../core/Theme/app_gradient.dart';
@@ -14,6 +15,7 @@ import '../../core/Theme/app_text_style.dart';
 import '../../core/constants/colors/colors.dart';
 import '../../core/shared/widgets/back_button.dart';
 import '../../core/utils/helpers/size_config.dart';
+import '../logout/presentation/widgets/logout_button.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -139,11 +141,12 @@ class Settings extends StatelessWidget {
                               SizedBox(width: SizeConfig.w(120)),
                               BlocBuilder<ThemeBloc, ThemeData>(
                                 builder: (context, state) {
-                                  return Icon(
-                                    Icons.logout_outlined,
-                                    color: colors.iconColor,
-                                    size: 30,
-                                  );
+                                  return LogoutButton();
+                                  // Icon(
+                                  //   Icons.logout_outlined,
+                                  //   color: colors.iconColor,
+                                  //   size: 30,
+                                  // );
                                 },
                               ),
                             ],

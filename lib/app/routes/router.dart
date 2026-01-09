@@ -34,7 +34,7 @@ import '../../features/verification_code/verify_otp/presentation/bloc/verifyotp_
 import '../di/injection_container.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: '/register',
+  initialLocation: '/SplashScreen',
   routes: [
     GoRoute(
       path: '/Onboarding',
@@ -57,7 +57,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/NavicationBar',
       builder: (context, state) {
-        return NavicationBar();
+        return MultiBlocProvider(
+          providers: [
+          BlocProvider(create: (_) => getIt<UnreadCountBloc>()),
+
+          BlocProvider(create: (_) => getIt<NotificationsBloc>()),
+          ],
+          child: NavicationBar(),
+        );
       },
     ),
     GoRoute(
@@ -96,7 +103,7 @@ final GoRouter router = GoRouter(
           BlocProvider(create: (_) => getIt<LoginBloc>(), child: Login()),
     ),
 
-        ShellRoute(
+    ShellRoute(
       builder: (context, state, child) {
         return BlocProvider(
           create: (_) => getIt<ChangePasswordBloc>(),
@@ -108,10 +115,7 @@ final GoRouter router = GoRouter(
           path: '/ForgotPassword',
           builder: (context, state) => ForgotPassword(),
         ),
-        GoRoute(
-          path: '/checkCode',
-          builder: (context, state) => CheckCode(),
-        ),
+        GoRoute(path: '/checkCode', builder: (context, state) => CheckCode()),
         GoRoute(
           path: '/resetPassword',
           builder: (context, state) => ResetPassword(),
@@ -133,7 +137,6 @@ final GoRouter router = GoRouter(
     //   path: '/resetPassword',
     //   builder: (context, state) => ResetPassword(),
     // ),
-
     GoRoute(
       path: '/verification_code',
       builder: (context, state) => MultiBlocProvider(
@@ -160,13 +163,9 @@ final GoRouter router = GoRouter(
           BlocProvider(
             create: (_) => ComplaintsBloc(getIt<GetMyComplaintsUseCase>()),
           ),
-          BlocProvider(
-            create: (_) =>
-                getIt<UnreadCountBloc>()..add(FetchUnreadCountEvent()),
-          ),
-          BlocProvider(create: (_) => getIt<UnreadCountBloc>()),
+          // BlocProvider(create: (_) => getIt<UnreadCountBloc>()),
 
-        BlocProvider(create: (_) => getIt<NotificationsBloc>()),
+          // BlocProvider(create: (_) => getIt<NotificationsBloc>()),
         ],
         child: MyComplaints(),
       ),

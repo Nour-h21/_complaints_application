@@ -40,7 +40,7 @@ class FrostedGlassCard extends StatelessWidget {
             height: height != null ? SizeConfig.h(height!) : null,
             padding: AppPadding.allMedium,
             decoration: BoxDecoration(
-              color: Colors.white38.withOpacity(0.3),
+              color: Colors.white38.withOpacity(0.2),
               borderRadius: AppRadius.circularMedium,
               border: Border.all(
                 color: Colors.white.withOpacity(0.3),

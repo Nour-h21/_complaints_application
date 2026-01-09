@@ -16,7 +16,8 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         final result = await useCase(otp: event.otp);
         emit(OtpSuccess(result.message));
       } catch (e) {
-        emit(OtpFailed(e.toString()));
+        final msg = e.toString().replaceAll("Exception: ", "");
+        emit(OtpFailed(msg));
       }
     });
   }

@@ -1,8 +1,10 @@
+import 'package:complaints_application/core/constants/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:complaints_application/core/constants/layout/app_padding.dart';
 import 'package:complaints_application/core/constants/layout/app_radius.dart';
 
+import '../../Theme/app_colors.dart';
 import '../../utils/helpers/size_config.dart';
 
 class TextFieldInput extends StatefulWidget {
@@ -41,6 +43,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return Container(
       padding: AppPadding.symmetricHorizontalSmall,
       decoration: BoxDecoration(
@@ -65,8 +68,8 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 border: InputBorder.none,
                 hintText: widget.hint,
                 hintStyle: TextStyle(
-                  color: Colors.white70,
-                  fontSize: SizeConfig.sp(13.5),
+                  color: colors.hindTextFieldInput,
+                  fontSize: SizeConfig.sp(14),
                 ),
               ),
             ),
@@ -81,7 +84,8 @@ class _TextFieldInputState extends State<TextFieldInput> {
                       _obscureText
                           ? Icons.visibility_off
                           : Icons.visibility,
-                      color: Colors.white70,
+                      // color: Colors.white70,
+                      color: AppColors.oliveGreen.withOpacity(0.88),
                       size: SizeConfig.w(22.5),
                     ),
                     onPressed: () {
@@ -93,7 +97,8 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 : widget.icon != null
                     ? Icon(
                         widget.icon,
-                        color: Colors.white70,
+                        // color: Colors.white70,
+                         color: AppColors.oliveGreen.withOpacity(0.88),
                         size: SizeConfig.w(22.5),
                       )
                     : const SizedBox(),

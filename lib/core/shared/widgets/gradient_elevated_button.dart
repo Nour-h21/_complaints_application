@@ -25,9 +25,7 @@ class GradientElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final gradients = Theme.of(context).extension<AppGradients>()!;
-    final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
-    final colors = Theme.of(context).extension<AppColorsTheme>()!;
+    final gradients = Theme.of(context).extension<AppGradients>()!;
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -43,8 +41,7 @@ class GradientElevatedButton extends StatelessWidget {
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: borderRadius ?? AppRadius.circularSmall,
-            gradient:
-            gradients.elevatedGradient
+            gradient: gradients.elevatedGradient,
           ),
           child: Padding(
             padding: AppPadding.symmetricVerticalSmall,
@@ -55,7 +52,7 @@ class GradientElevatedButton extends StatelessWidget {
                   color: AppColors.oliveGreen,
                   fontSize: SizeConfig.sp(19),
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Arima'
+                  fontFamily: 'Arima',
                 ),
               ),
             ),

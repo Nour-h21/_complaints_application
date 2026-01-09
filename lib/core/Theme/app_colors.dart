@@ -11,6 +11,8 @@ class AppColorsTheme extends ThemeExtension<AppColorsTheme> {
   final Color navBrrBackground;
   final Color floatingButtonBackground;
   final Color floatingButtonSplashColor;
+  final Color hindnoaccount;
+  final Color hindTextFieldInput;
 
   const AppColorsTheme({
     required this.onboardingBox,
@@ -21,20 +23,24 @@ class AppColorsTheme extends ThemeExtension<AppColorsTheme> {
     required this.errorBackground,
     required this.navBrrBackground,
     required this.floatingButtonBackground,
-    required this.floatingButtonSplashColor
+    required this.floatingButtonSplashColor,
+    required this.hindnoaccount,
+    required this.hindTextFieldInput,
   });
 
   @override
   AppColorsTheme copyWith({
     Color? onboardingBox,
+    Color? onboardingRectangle,
     Color? cardBackground,
     Color? badge,
     Color? iconColor,
     Color? errorBackground,
-    Color? onboardingRectangle,
     Color? navBrrBackground,
     Color? floatingButtonBackground,
     Color? floatingButtonSplashColor,
+    Color? hindnoaccount,
+    Color? hindTextFieldInput,
   }) {
     return AppColorsTheme(
       onboardingBox: onboardingBox ?? this.onboardingBox,
@@ -45,7 +51,9 @@ class AppColorsTheme extends ThemeExtension<AppColorsTheme> {
       errorBackground: errorBackground ?? this.errorBackground,
       navBrrBackground: navBrrBackground ?? this.navBrrBackground,
       floatingButtonBackground: floatingButtonBackground ?? this.floatingButtonBackground,
-      floatingButtonSplashColor: floatingButtonSplashColor ?? this.floatingButtonSplashColor
+      floatingButtonSplashColor: floatingButtonSplashColor ?? this.floatingButtonSplashColor,
+      hindnoaccount: hindnoaccount ?? this.hindnoaccount,
+      hindTextFieldInput: hindTextFieldInput ?? this.hindTextFieldInput,
     );
   }
 

@@ -50,6 +50,15 @@ class AppTextStyles {
     fontFamily: 'Arima'
   );
 
+  
+  static TextStyle medWhite70WieghtStyle = TextStyle(
+    fontSize: SizeConfig.h(16),
+    // color: AppColors.beige.withOpacity(0.5),
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Arima'
+  );
+
   static TextStyle smallWhite70Style = TextStyle(
     fontSize: SizeConfig.h(15),
     color: AppColors.primaryColor,
@@ -63,16 +72,25 @@ class AppTextStyles {
    
   );
   
-  static TextStyle smallwhiteStyle = TextStyle(
+  static TextStyle smallOliveStyle = TextStyle(
     fontSize: SizeConfig.sp(14),
-    color: AppColors.primaryColor,
+    color: AppColors.oliveGreen.withOpacity(0.8),
+    fontWeight: FontWeight.w800,
+    fontFamily: 'Arima'
+  );
+
+    static TextStyle smallwhiteStyle = TextStyle(
+    fontSize: SizeConfig.sp(15.5),
+    color: AppColors.armyGreen.withOpacity(0.5),
     fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
   );
 
   static TextStyle medwhiteStyle = TextStyle(
     fontSize: SizeConfig.sp(22),
     color: AppColors.primaryColor1,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
   );
 
  static TextStyle bigwhiteStyle = TextStyle(
@@ -109,6 +127,13 @@ class AppTextStyles {
     fontFamily: 'Arima'
   );
 
+  static TextStyle smallOliveGreen2Style = TextStyle(
+    fontSize: SizeConfig.sp(15.5),
+    color: AppColors.oliveGreen.withOpacity(0.88),
+    fontWeight: FontWeight.w800,
+    fontFamily: 'Arima'
+  );
+
   static TextStyle medMedGreenStyle = TextStyle(
     fontSize: SizeConfig.h(18),
     color: const Color.fromARGB(255, 115, 123, 114),
@@ -129,10 +154,11 @@ class AppTextStyles {
     fontFamily: 'Arima'
   );
 
-  // static TextStyle medOliveGreenStyle = TextStyle(
-  //   fontSize: SizeConfig.sp(25),
-  //   color: AppColors.oliveGreen,
-  //   fontWeight: FontWeight.bold,
-  // );
+  static TextStyle bigOliveGreenStyle = TextStyle(
+    fontSize: SizeConfig.sp(25),
+    color: AppColors.oliveGreen.withOpacity(0.88),
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
+  );
 
 }

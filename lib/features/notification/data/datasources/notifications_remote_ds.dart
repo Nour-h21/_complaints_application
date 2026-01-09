@@ -1,6 +1,7 @@
 import 'package:complaints_application/core/services/storage_service.dart';
 import 'package:dio/dio.dart';
 
+import '../../../../app/di/injection_container.dart';
 import '../models/notifications_model.dart';
 
 abstract class NotificationsRemoteDs {
@@ -14,13 +15,14 @@ class NotificationsRemoteDsImpl implements NotificationsRemoteDs {
 
   @override
   Future<List<NotificationModel>> getNotifications() async {
-    final userId = await StorageService.getUserId();
+    final storage = getIt<StorageService>();
+
+    final userId = await storage.getUserId();
+    // final userId = await StorageService.getUserId();
     final response = await dio.get('get-notifications/$userId');
 
     final List list = response.data['data'];
 
-    return list
-        .map((e) => NotificationModel.fromJson(e))
-        .toList();
+    return list.map((e) => NotificationModel.fromJson(e)).toList();
   }
 }

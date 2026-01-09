@@ -1,6 +1,7 @@
 class AppAssets {
   static String background = "assets/images/image9.jpg";
-  static String logoWithoutBackground = "assets/images/image7.png";
+  static String logoWithoutBackground = "assets/images/image2jpg.jpg";
+  static String logoWitBackground = "assets/images/image7.png";
   static String logo = "assets/images/image2jpg.jpg";
   static String onboarding1 = "assets/images/image4.png";
   static String onboarding2 = "assets/images/image3.png";

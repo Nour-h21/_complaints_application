@@ -1,4 +1,3 @@
-import 'package:complaints_application/core/constants/colors/colors.dart';
 import 'package:complaints_application/core/constants/layout/app_space.dart';
 import 'package:complaints_application/core/constants/styles/text_styles.dart';
 
@@ -6,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/Theme/app_colors.dart';
 import '../../../../core/constants/strings/texts.dart';
-import '../../../../core/shared/widgets/gradient_elevated_button.dart';
 import '../../../../core/shared/widgets/card_image_on_glass.dart';
+import '../../../../core/shared/widgets/gradient_elevated_button1.dart';
 import '../../../../core/shared/widgets/text_field_input.dart';
 import '../../../../core/utils/helpers/size_config.dart';
 import '../../../../core/utils/validators/auth_validator.dart';
@@ -17,7 +17,7 @@ import '../bloc/signup_event.dart';
 import '../bloc/signup_state.dart';
 
 class Signup extends StatefulWidget {
-  Signup({super.key});
+  const Signup({super.key});
 
   @override
   State<Signup> createState() => _SignupState();
@@ -37,56 +37,56 @@ class _SignupState extends State<Signup> {
   bool _isUpdating = false;
 
   @override
-void initState() {
-  super.initState();
+  void initState() {
+    super.initState();
 
-  emailOrPhone.addListener(() {
-    if (_isUpdating) return;
+    emailOrPhone.addListener(() {
+      if (_isUpdating) return;
 
-    String text = emailOrPhone.text;
+      String text = emailOrPhone.text;
 
-    // إذا إيميل → لا تعمل شي
-    if (text.contains('@')) return;
+      // إذا إيميل → لا تعمل شي
+      if (text.contains('@')) return;
 
-    // إذا بلش بأرقام
-    if (RegExp(r'^[0-9]').hasMatch(text)) {
-      if (!text.startsWith('+963')) {
-        _isUpdating = true;
+      // إذا بلش بأرقام
+      if (RegExp(r'^[0-9]').hasMatch(text)) {
+        if (!text.startsWith('+963')) {
+          _isUpdating = true;
 
-        emailOrPhone.text = '+963$text';
-        emailOrPhone.selection = TextSelection.fromPosition(
-          TextPosition(offset: emailOrPhone.text.length),
-        );
+          emailOrPhone.text = '+963$text';
+          emailOrPhone.selection = TextSelection.fromPosition(
+            TextPosition(offset: emailOrPhone.text.length),
+          );
 
-        _isUpdating = false;
+          _isUpdating = false;
+        }
       }
-    }
-  });
-}
+    });
+  }
 
-@override
-void dispose() {
-  name.dispose();
-  emailOrPhone.dispose();
-  password.dispose();
-  comfirmPassword.dispose();
-  super.dispose();
-}
+  @override
+  void dispose() {
+    name.dispose();
+    emailOrPhone.dispose();
+    password.dispose();
+    comfirmPassword.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    // final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
+    final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: BlocListener<SignupBloc, SignupState>(
           listener: (context, state) {
             if (state is SignupLoading) {
-              // show loading
             } else if (state is SignupFailed) {
-              // show error
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.message)));
               print(state.message);
             } else if (state is SignupSuccess) {
               GoRouter.of(context).go('/verification_code');
@@ -94,73 +94,75 @@ void dispose() {
           },
           child: CardImageOnGlass(
             width: SizeConfig.w(330),
+            showBackButton:false,
             child: Directionality(
-              textDirection: TextDirection.rtl,
+              textDirection: TextDirection.ltr,
               child: Form(
-                key: _formKey,   // ✔ ربط الفورم
+                key: _formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppSpaces.verticalSmall,
-      
+                    AppSpaces.verticalMedium,
+
                     Text(
                       AppTexts.signup,
-                      style: AppTextStyles.medwhiteStyle,
+                      style: AppTextStyles.bigOliveGreenStyle,
                     ),
-      
+
                     AppSpaces.verticalTiny,
-      
+
                     Text(
                       AppTexts.createAccounts,
-                      style: TextStyle(color:AppColors.primaryColor),
+                      style: AppTextStyles.medWhite70WieghtStyle,
+                      // style: TextStyle(color: AppColors.primaryColor ,fontSize: 20),
                     ),
-      
+
                     AppSpaces.verticalMedSmall,
-      
+
                     TextFieldInput(
-                      controller: name,              // ✔ ربط الكونترولر
+                      controller: name,
                       hint: AppTexts.name,
                       icon: Icons.person,
                       validator: AuthValidator.nameValidator,
                     ),
                     AppSpaces.verticalSmall,
-      
+
                     TextFieldInput(
-  controller: emailOrPhone,
-  hint: AppTexts.emailOrPhone,
-  icon: Icons.email,
-  // keyboardType: TextInputType.emailAddress,
-  // prefixText: "+963 ",
-  validator: AuthValidator.emailOrPhoneValidator,
-),
+                      controller: emailOrPhone,
+                      hint: AppTexts.emailOrPhone,
+                      icon: Icons.email,
+                      // keyboardType: TextInputType.emailAddress,
+                      // prefixText: "+963 ",
+                      validator: AuthValidator.emailOrPhoneValidator,
+                    ),
                     AppSpaces.verticalSmall,
-      
+
                     TextFieldInput(
-                      controller: password,          // ✔
+                      controller: password,
                       hint: AppTexts.password,
                       // icon: Icons.password,
                       isPassword: true,
                       validator: AuthValidator.passwordValidator,
-      
                     ),
                     AppSpaces.verticalSmall,
-      
+
                     TextFieldInput(
-                      controller: comfirmPassword,   // ✔
+                      controller: comfirmPassword,
                       hint: AppTexts.comfirmPassword,
                       // icon: Icons.password,
                       isPassword: true,
                       validator: (value) =>
-                            AuthValidator.confirmPasswordValidator(
-                              value,
-                              password.text,
-                            ),
+                          AuthValidator.confirmPasswordValidator(
+                            value,
+                            password.text,
+                          ),
                     ),
-      
-                    AppSpaces.verticalLarge,
-      
-                    GradientElevatedButton(
+
+                    // AppSpaces.verticalLarge,
+                    AppSpaces.verticalMedium,
+                    AppSpaces.verticalSmall,
+                    GradientElevatedButton1(
                       text: AppTexts.signup,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
@@ -175,34 +177,23 @@ void dispose() {
                         }
                       },
                     ),
-      
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     SizedBox(width: SizeConfig.w(2)),
-                    //     TextButton(
-                    //       onPressed: () {
-                    //         GoRouter.of(context).go('/logIn');
-                    //       },
-                    //       child: Text(
-                    //       AppTexts.nosignup ,
-                    //        style: AppTextStyles.smallwhiteStyle ),
-                    //     ),
-                    //   ],
-                    // ),
-      
-                     Row(
+                    // AppSpaces.verticalTiny,
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppTexts.haveAccount, style: AppTextStyles.smallBlackStyle),
-                        SizedBox(width: SizeConfig.w(2)),
+                        Text(
+                          AppTexts.haveAccount,
+                          // style: AppTextStyles.smallwhiteStyle,
+                          style: TextStyle(color: colors.hindnoaccount),
+                        ),
+                        // SizedBox(width: SizeConfig.w(2)),
                         TextButton(
                           onPressed: () {
                             GoRouter.of(context).go('/logIn');
                           },
                           child: Text(
                             AppTexts.nosignup,
-                            style: AppTextStyles.smallwhiteStyle,
+                            style: AppTextStyles.smallOliveGreen2Style,
                           ),
                         ),
                       ],
