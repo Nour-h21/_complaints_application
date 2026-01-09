@@ -19,40 +19,47 @@ class AppTextStyles {
     fontSize: SizeConfig.h(17),
     color: AppColors.beige,
     fontWeight: FontWeight.w400,
+     fontFamily: 'Arima'
   );
 
   static TextStyle veryMedBeigeStyle = TextStyle(
     fontSize: SizeConfig.h(19),
     color: AppColors.beige,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
   );
 
    static TextStyle smallBeigeStyle = TextStyle(
     fontSize: SizeConfig.h(13.5),
     color: AppColors.beige,
     fontWeight: FontWeight.w400,
+    fontFamily: 'Arima'
   );
 
    static TextStyle largeWhite70Style = TextStyle(
     fontSize: SizeConfig.h(18),
     color: AppColors.primaryColor,
     fontWeight: FontWeight.w400,
+    fontFamily: 'Arima'
   );
 
   static TextStyle medWhite70Style = TextStyle(
     fontSize: SizeConfig.h(16),
     color: AppColors.primaryColor,
     fontWeight: FontWeight.w400,
+    fontFamily: 'Arima'
   );
 
   static TextStyle smallWhite70Style = TextStyle(
     fontSize: SizeConfig.h(15),
     color: AppColors.primaryColor,
+    fontFamily: 'Arima'
    
   );
   static TextStyle verySmallWhite70Style = TextStyle(
     fontSize: SizeConfig.h(14.3),
     color: AppColors.primaryColor,
+    fontFamily: 'Arima'
    
   );
 
@@ -60,24 +67,48 @@ class AppTextStyles {
     fontSize: SizeConfig.h(24),
     color: Colors.white,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
   );
 
   static TextStyle medBlackStyle = TextStyle(
     fontSize: SizeConfig.h(20),
     color: AppColors.black,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
   );
 
    static TextStyle verySmallBlackStyle = TextStyle(
    fontSize: SizeConfig.h(14.3),
     color: AppColors.black,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
   );
 
   static TextStyle smallOliveGreenStyle = TextStyle(
     fontSize: SizeConfig.h(15.5),
     color: AppColors.oliveGreen,
     fontWeight: FontWeight.w500,
+    fontFamily: 'Arima'
+  );
+
+  static TextStyle medMedGreenStyle = TextStyle(
+    fontSize: SizeConfig.h(18),
+    color: const Color.fromARGB(255, 115, 123, 114),
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Arima'
+  );
+
+  static TextStyle largOliveGreenStyle = TextStyle(
+    fontSize: SizeConfig.h(30),
+    color: AppColors.oliveGreen,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
+  );
+   static TextStyle medOliveGreenStyle = TextStyle(
+    fontSize: SizeConfig.h(23),
+    color: AppColors.oliveGreen,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Arima'
   );
 
 }

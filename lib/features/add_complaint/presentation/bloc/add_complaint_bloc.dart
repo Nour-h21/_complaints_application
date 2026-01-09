@@ -114,7 +114,7 @@ class AddComplaintBloc extends Bloc<AddComplaintEvent, AddComplaintState> {
 
 //New
     on<ResetAddComplaintEvent>((event, emit) {
-      final st = state;
+      // final st = state;
       emit(
         AddComplaintInitial(
           selectedTypeId:  null,

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../Theme/app_colors.dart';
+import '../../Theme/app_gradient.dart';
+import '../../Theme/app_text_style.dart';
+import '../../constants/colors/colors.dart';
 import '../../constants/layout/app_padding.dart';
 import '../../constants/layout/app_radius.dart';
 import '../../utils/helpers/size_config.dart';
@@ -20,6 +24,9 @@ class GradientElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final gradients = Theme.of(context).extension<AppGradients>()!;
+    final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
+    final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -35,9 +42,8 @@ class GradientElevatedButton extends StatelessWidget {
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: borderRadius ?? AppRadius.circularSmall,
-            gradient: LinearGradient(
-              colors: [const Color.fromARGB(255, 253, 250, 218), Colors.green.shade100],
-            ),
+            gradient:
+            gradients.elevatedGradient
           ),
           child: Padding(
             padding: AppPadding.symmetricVerticalSmall,
@@ -45,9 +51,10 @@ class GradientElevatedButton extends StatelessWidget {
               child: Text(
                 text,
                 style: TextStyle(
-                  color: const Color(0xFF001108),
-                  fontSize: SizeConfig.sp(18),
+                  color: AppColors.oliveGreen,
+                  fontSize: SizeConfig.sp(19),
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Arima'
                 ),
               ),
             ),

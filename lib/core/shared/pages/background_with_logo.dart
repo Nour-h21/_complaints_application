@@ -34,49 +34,51 @@ class BackgroundWithLogo extends StatelessWidget {
               ),
             ),
           ),
-
-          Column(
-            children: [
-             Row(
-               children: [
-                 icon,
-               ],
-             ),
-              Row(
-                children: [
-                  Padding(
-                    padding: AppPadding.onlyTopLarge,
-                    child: Image.asset(
-                      AppAssets.logoWithoutBackground,
-                      height: SizeConfig.h(60),
-                      width: SizeConfig.w(140),
-                    ),
-                  ),
-                  Padding(
-                    padding: padding,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Text(
-                        appbarName,
-                        style: AppTextStyles.bigBeigeStyle,
+      
+          SingleChildScrollView(
+            child: Column(
+              children: [
+               Row(
+                 children: [
+                   icon,
+                 ],
+               ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: AppPadding.onlyTopLarge,
+                      child: Image.asset(
+                        AppAssets.logoWithoutBackground,
+                        height: SizeConfig.h(60),
+                        width: SizeConfig.w(140),
                       ),
                     ),
-                  ),
-                ],
-              ),
-
-              AppSpaces.verticalVeryLarge,
-
-              useListview
-                  ? SizedBox(
-                      height: 498,
-                      child: ListView(
-                        scrollDirection: Axis.vertical,
-                        children: [child, AppSpaces.verticalVeryLarge],
+                    Padding(
+                      padding: padding,
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Text(
+                          appbarName,
+                          style: AppTextStyles.bigBeigeStyle,
+                        ),
                       ),
-                    )
-                  : child,
-            ],
+                    ),
+                  ],
+                ),
+                  
+                AppSpaces.verticalVeryLarge,
+                  
+                useListview
+                    ? SizedBox(
+                        height: 498,
+                        child: ListView(
+                          scrollDirection: Axis.vertical,
+                          children: [child, AppSpaces.verticalVeryLarge],
+                        ),
+                      )
+                    : child,
+              ],
+            ),
           ),
         ],
       ),

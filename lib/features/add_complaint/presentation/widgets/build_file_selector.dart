@@ -16,10 +16,9 @@ import '../bloc/add_complaint_bloc.dart';
 import '../bloc/add_complaint_event.dart';
 
 Widget buildFileSelector(BuildContext context, List<File> attachments) {
-  final parentContext = context; 
+  final parentContext = context;
   return Column(
     children: [
-     
       Padding(
         padding: AppPadding.onlyRightMedium,
         child: Container(
@@ -33,6 +32,8 @@ Widget buildFileSelector(BuildContext context, List<File> attachments) {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              Text('Attach files', style: AppTextStyles.smallBeigeStyle),
+
               IconButton(
                 onPressed: () {
                   showModalBottomSheet(
@@ -41,7 +42,7 @@ Widget buildFileSelector(BuildContext context, List<File> attachments) {
                     builder: (context) {
                       return SafeArea(
                         child: Directionality(
-                          textDirection: TextDirection.rtl,
+                          textDirection: TextDirection.ltr,
                           child: Wrap(
                             children: [
                               ListTile(
@@ -50,7 +51,7 @@ Widget buildFileSelector(BuildContext context, List<File> attachments) {
                                   color: AppColors.oliveGreen,
                                 ),
                                 title: Text(
-                                  'اختر صور',
+                                  'pick an image',
                                   style: AppTextStyles.smallOliveGreenStyle,
                                 ),
                                 onTap: () {
@@ -64,7 +65,7 @@ Widget buildFileSelector(BuildContext context, List<File> attachments) {
                                   color: AppColors.oliveGreen,
                                 ),
                                 title: Text(
-                                  'اختر ملفات',
+                                  'pick a file',
                                   style: AppTextStyles.smallOliveGreenStyle,
                                 ),
                                 onTap: () {
@@ -79,9 +80,12 @@ Widget buildFileSelector(BuildContext context, List<File> attachments) {
                     },
                   );
                 },
-                icon: Icon(Icons.add, color: AppColors.yellow, size: SizeConfig.h(25)),
+                icon: Icon(
+                  Icons.add,
+                  color: AppColors.oliveGreen,
+                  size: SizeConfig.h(25),
+                ),
               ),
-              Text('إرفاق ملفات', style: AppTextStyles.smallWhite70Style),
             ],
           ),
         ),

@@ -12,4 +12,6 @@ class AppColors{
   static Color yellow = const Color.fromARGB(255, 250, 243, 184);
   static Color black = const Color.fromARGB(255, 0, 17, 8);
   static Color greenWithShade = Colors.green.shade100;
+  static Color offWhite = Color(0XFFF2F4EC);
+   static Color lowGreen = Color(0xFFb3beb0);
 }

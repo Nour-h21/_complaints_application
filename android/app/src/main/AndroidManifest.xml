@@ -1,4 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+ <!-- 🔹 أذونات image_picker -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- للأندرويد 13 وما فوق -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- للأندرويد 12 وما قبل (احتياطي) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:label="complaints_application"
         android:name="${applicationName}"

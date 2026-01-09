@@ -1,131 +1,18 @@
 import 'dart:io';
 
-import 'package:complaints_application/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:open_filex/open_filex.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:go_router/go_router.dart';
+import 'package:path_provider/path_provider.dart';
 
-// class AttachmentsViewer extends StatelessWidget {
-//   final List<String> attachments; 
 
-//   const AttachmentsViewer({
-//     super.key,
-//     required this.attachments,
-//   });
-
-//   bool _isImage(String path) {
-//     final ext = path.toLowerCase();
-//     return ext.endsWith(".jpg") ||
-//         ext.endsWith(".jpeg") ||
-//         ext.endsWith(".png") ||
-//         ext.endsWith(".gif");
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final imagePaths = attachments.where((e) => _isImage(e)).toList();
-//     final filePaths = attachments.where((e) => !_isImage(e)).toList();
-
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         // ---------- الصور ----------
-//         if (imagePaths.isNotEmpty)
-//           Wrap(
-//             spacing: 10,
-//             runSpacing: 10,
-//             children: imagePaths.map((path) {
-//               return InkWell(
-//                 onTap: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(
-//                       builder: (_) => _FullImageView(imagePath: path),
-//                     ),
-//                   );
-//                 },
-//                 child: ClipRRect(
-//                   borderRadius: BorderRadius.circular(8),
-//                   child: Image.file(
-//                     File(path),
-//                     width: 80,
-//                     height: 80,
-//                     fit: BoxFit.cover,
-//                   ),
-//                 ),
-//               );
-//             }).toList(),
-//           ),
-
-//         SizedBox(height: 15),
-
-//         // ---------- الملفات ----------
-//         if (filePaths.isNotEmpty)
-//           Wrap(
-//             spacing: 10,
-//             runSpacing: 10,
-//             children: filePaths.map((path) {
-//               final fileName = path.split('/').last;
-
-//               return InkWell(
-//                 onTap: () => OpenFilex.open(path),
-//                 child: Container(
-//                   width: 120,
-//                   padding: EdgeInsets.all(10),
-//                   decoration: BoxDecoration(
-//                     color: Colors.white.withOpacity(0.12),
-//                     borderRadius: BorderRadius.circular(8),
-//                     border: Border.all(color: Colors.white24),
-//                   ),
-//                   child: Row(
-//                     children: [
-//                       Icon(Icons.insert_drive_file, color: Colors.white),
-//                       SizedBox(width: 6),
-//                       Expanded(
-//                         child: Text(
-//                           fileName,
-//                           maxLines: 1,
-//                           overflow: TextOverflow.ellipsis,
-//                           style: TextStyle(color: Colors.white),
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               );
-//             }).toList(),
-//           ),
-//       ],
-//     );
-//   }
-// }
-
-// class _FullImageView extends StatelessWidget {
-//   final String imagePath;
-//   const _FullImageView({required this.imagePath});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.black,
-//       body: GestureDetector(
-//         onTap: () => Navigator.pop(context),
-//         child: Center(
-//           child: Image.file(File(imagePath)),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
+import 'package:http/http.dart' as http;
 
 
 class AttachmentsViewer extends StatelessWidget {
-  final List<String> attachments; // remote URLs or local paths
+  final List<String> attachments;
 
-  const AttachmentsViewer({
-    super.key,
-    required this.attachments,
-  });
+  const AttachmentsViewer({super.key, required this.attachments});
 
   bool _isImage(String p) {
     p = p.toLowerCase();
@@ -147,7 +34,7 @@ class AttachmentsViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imagePaths = attachments.where((e) => _isImage(e)).toList();
-    final filePaths = attachments.where((e) => !_isImage(e)).toList();
+    final filePaths = attachments.where((e) => _isPdf(e)).toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,16 +87,13 @@ class AttachmentsViewer extends StatelessWidget {
               final fileName = path.split('/').last;
 
               return InkWell(
-                onTap: () async {
-                  try {
-                    await OpenFilex.open(path);
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                       SnackBar(
-                        backgroundColor: Colors.redAccent,
-                        content: Text('لا يمكن فتح الملف',style: AppTextStyles.smallBeigeStyle,)),
-                    );
-                  }
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PdfViewerPage(path: path),
+                    ),
+                  );
                 },
                 child: Container(
                   width: 130,
@@ -241,28 +125,32 @@ class AttachmentsViewer extends StatelessWidget {
     );
   }
 }
+
 class _FullImageView extends StatelessWidget {
   final String imagePath;
   const _FullImageView({required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
-    final isRemote = imagePath.startsWith('http') || imagePath.startsWith('https');
-    final image = isRemote ? Image.network(imagePath) : Image.file(File(imagePath));
+    final isRemote =
+        imagePath.startsWith('http') || imagePath.startsWith('https');
+    final image = isRemote
+        ? Image.network(imagePath)
+        : Image.file(File(imagePath));
 
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // الصورة
+          
           Positioned.fill(
             child: GestureDetector(
-              onTap: () => Navigator.pop(context), // كبسة على الشاشة بتسكر
+              onTap: () => Navigator.pop(context), 
               child: Center(child: image),
             ),
           ),
 
-          // زر الإغلاق العلوي
+          
           Positioned(
             top: 40,
             right: 20,
@@ -283,3 +171,63 @@ class _FullImageView extends StatelessWidget {
     );
   }
 }
+
+class PdfViewerPage extends StatefulWidget {
+  final String path;
+  const PdfViewerPage({super.key, required this.path});
+
+  @override
+  State<PdfViewerPage> createState() => _PdfViewerPageState();
+}
+
+class _PdfViewerPageState extends State<PdfViewerPage> {
+  String? localPath;
+
+  @override
+  void initState() {
+    super.initState();
+    _preparePdf();
+  }
+
+  Future<void> _preparePdf() async {
+    if (widget.path.startsWith('http')) {
+      final response = await http.get(Uri.parse(widget.path));
+      final dir = await getTemporaryDirectory();
+      final file = File('${dir.path}/${widget.path.split('/').last}');
+      await file.writeAsBytes(response.bodyBytes);
+      setState(() => localPath = file.path);
+    } else {
+      setState(() => localPath = widget.path);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (localPath == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: IconButton(
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+              icon: Icon(Icons.close_rounded, size: 30, color: Colors.black),
+            ),
+          ),
+        ],
+      ),
+      body: PDFView(filePath: localPath),
+    );
+  }
+}
+
+
+
+

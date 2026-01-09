@@ -1,10 +1,14 @@
 import 'package:complaints_application/app/di/injection_container.dart';
 import 'package:complaints_application/core/constants/urls/api_url.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/services/storage_service.dart';
 
 Future<void> initCoreModule() async {
+
+getIt.registerSingleton(await SharedPreferences.getInstance());
+
  getIt.registerLazySingleton<Dio>((){
   final dio = Dio(
     BaseOptions(
@@ -33,7 +37,7 @@ dio.interceptors.add(
       // غير هيك → نضيف التوكن
       final token = await getIt<StorageService>().getToken();
       if (token != null && token.isNotEmpty) {
-        options.headers['Authorization'] = 'Bearer 1|EqwdbI3diHdVXpg1Njap6hXmgTyDfov6CVEOYddd22ca1608';
+        options.headers['Authorization'] = 'Bearer 6|L3CXDr1JS8SUmaVnEIcLu84JfecJX2cmf0Ez6GSP2e0a96c7';
       }
 
       return handler.next(options);

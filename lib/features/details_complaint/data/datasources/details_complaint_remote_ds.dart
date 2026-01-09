@@ -16,7 +16,7 @@ class DetailsRemoteDataSourceImpl implements DetailsRemoteDataSource {
       options: Options(
         headers: {
           "Authorization":
-              "Bearer 1|EqwdbI3diHdVXpg1Njap6hXmgTyDfov6CVEOYddd22ca1608",
+              "Bearer 1|toq1dUi3Vbm4ui62dXRezchvRAYnZNoo6y1ydIKR2e677d00",
         },
       ),
     );
