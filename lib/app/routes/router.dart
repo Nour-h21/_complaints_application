@@ -34,7 +34,7 @@ import '../../features/verification_code/verify_otp/presentation/bloc/verifyotp_
 import '../di/injection_container.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: '/register',
+  initialLocation: '/SplashScreen',
   routes: [
     GoRoute(
       path: '/Onboarding',

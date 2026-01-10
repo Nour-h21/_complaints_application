@@ -5,8 +5,6 @@ import 'package:complaints_application/features/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/Theme/app_colors.dart';
-import '../../../../core/Theme/app_gradient.dart';
-import '../../../../core/Theme/app_text_style.dart';
 import '../../../../core/constants/colors/colors.dart';
 
 class NavicationBar extends StatefulWidget {
@@ -33,8 +31,8 @@ class _HomeScreenState extends State<NavicationBar> {
 
   @override
   Widget build(BuildContext context) {
-    final gradients = Theme.of(context).extension<AppGradients>()!;
-    final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
+    // final gradients = Theme.of(context).extension<AppGradients>()!;
+    // final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
     final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return Scaffold(
       body: _pages[_selectedIndex],

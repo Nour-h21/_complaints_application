@@ -36,11 +36,16 @@ class AppTheme {
         ),
         settingTitle: TextStyle(
           fontFamily: 'Arima',
-          fontSize: 20,
+          fontSize: 17,
           fontWeight: FontWeight.w500,
           color: AppColors.beige,
         ),
-        success: TextStyle(fontSize: 14, color: Colors.green),
+        success: TextStyle(
+          fontSize: 27,
+          fontFamily: 'Arima',
+          fontWeight: FontWeight.bold,
+          color: AppColors.armyGreen,
+        ),
         cardTitle: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         cardSubtitle: TextStyle(fontSize: 14, color: Colors.grey),
         addTitle: TextStyle(
@@ -52,6 +57,15 @@ class AppTheme {
         sectionHeader: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         profileName: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         emptyState: TextStyle(fontSize: 16, color: Colors.grey),
+        subsuccess: TextStyle(
+          fontSize: 18,
+          fontFamily: 'Arima',
+          fontWeight: FontWeight.w300,
+          color: AppColors.armyGreen2,
+        ), addSubTitle: TextStyle(
+                                              color: AppColors.armyGreen,
+                                              fontFamily: 'Arima',
+                                            ),
       ),
 
       AppColorsTheme(
@@ -137,11 +151,16 @@ class AppTheme {
         ),
         settingTitle: TextStyle(
           fontFamily: 'Arima',
-          fontSize: 20,
+          fontSize: 17,
           fontWeight: FontWeight.w500,
           color: AppColors.offWhite,
         ),
-        success: TextStyle(fontSize: 14, color: Colors.green),
+        success: TextStyle(
+          fontSize: 27,
+          fontFamily: 'Arima',
+          fontWeight: FontWeight.bold,
+          color: AppColors.beige,
+        ),
         cardTitle: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         cardSubtitle: TextStyle(fontSize: 14, color: Colors.grey),
         addTitle: TextStyle(
@@ -153,6 +172,15 @@ class AppTheme {
         sectionHeader: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         profileName: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         emptyState: TextStyle(fontSize: 16, color: Colors.grey),
+        subsuccess: TextStyle(
+          fontSize: 18,
+          fontFamily: 'Arima',
+          fontWeight: FontWeight.w300,
+          color: AppColors.primaryColor,
+        ), addSubTitle: TextStyle(
+                                              color: AppColors.primaryColor,
+                                              fontFamily: 'Arima',
+                                            ),
       ),
       AppColorsTheme(
         onboardingBox: AppColors.whiteWithOpacity3,

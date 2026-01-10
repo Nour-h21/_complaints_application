@@ -8,9 +8,11 @@ class AppTextStyleTheme extends ThemeExtension<AppTextStyleTheme> {
   final TextStyle detTitle;
   final TextStyle settingTitle;
   final TextStyle success;
+  final TextStyle subsuccess;
   final TextStyle cardTitle;
   final TextStyle cardSubtitle;
   final TextStyle addTitle;
+  final TextStyle addSubTitle;
   final TextStyle sectionHeader;
   final TextStyle profileName;
   final TextStyle emptyState;
@@ -22,9 +24,11 @@ class AppTextStyleTheme extends ThemeExtension<AppTextStyleTheme> {
     required this.detTitle,
     required this.settingTitle,
     required this.success,
+    required this.subsuccess,
     required this.cardTitle,
     required this.cardSubtitle,
     required this.addTitle,
+    required this.addSubTitle,
     required this.sectionHeader,
     required this.profileName,
     required this.emptyState,
@@ -38,12 +42,14 @@ class AppTextStyleTheme extends ThemeExtension<AppTextStyleTheme> {
     TextStyle? detTitle,
     TextStyle? settingTitle,
     TextStyle? success,
+    TextStyle? subsuccess,
     TextStyle? cardTitle,
     TextStyle? cardSubtitle,
     TextStyle? addTitle,
     TextStyle? sectionHeader,
     TextStyle? profileName,
     TextStyle? emptyState,
+    TextStyle? addSubTitle,
   }) {
     return AppTextStyleTheme(
       onboardingTitle: onboardingTitle ?? this.onboardingTitle,
@@ -56,9 +62,10 @@ class AppTextStyleTheme extends ThemeExtension<AppTextStyleTheme> {
       cardTitle: cardTitle ?? this.cardTitle,
       cardSubtitle: cardSubtitle ?? this.cardSubtitle,
       addTitle: addTitle ?? this.addTitle,
+      addSubTitle: addSubTitle ?? this.addSubTitle,
       sectionHeader: sectionHeader ?? this.sectionHeader,
       profileName: profileName ?? this.profileName,
-      emptyState: emptyState ?? this.emptyState,
+      emptyState: emptyState ?? this.emptyState, subsuccess: subsuccess?? this.subsuccess,
     );
   }
 

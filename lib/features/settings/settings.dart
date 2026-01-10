@@ -2,9 +2,6 @@ import 'package:complaints_application/core/Theme/app_theme.dart';
 import 'package:complaints_application/core/constants/layout/app_space.dart';
 import 'package:complaints_application/features/settings/bloc/theme_bloc.dart';
 import 'package:complaints_application/features/settings/bloc/theme_event.dart';
-import 'package:complaints_application/features/settings/localization_bloc/bloc/translate_bloc.dart';
-import 'package:complaints_application/features/settings/localization_bloc/bloc/translate_event.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,11 +17,11 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentLang = context
-        .watch<LocalizationBloc>()
-        .state
-        .locale
-        .languageCode;
+    // final currentLang = context
+    //     .watch<LocalizationBloc>()
+    //     .state
+    //     .locale
+    //     .languageCode;
     final gradients = Theme.of(context).extension<AppGradients>()!;
     final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
     final colors = Theme.of(context).extension<AppColorsTheme>()!;
@@ -62,7 +59,7 @@ class Settings extends StatelessWidget {
                 AppSpaces.verticalMedium,
 
                 Padding(
-                  padding: EdgeInsets.only(left: 2, right: 12),
+                  padding: EdgeInsets.only(left: 2, right: 20),
                   child: Column(
                     children: [
                       SizedBox(
@@ -93,39 +90,39 @@ class Settings extends StatelessWidget {
                           ),
                         ),
                       ),
-                      AppSpaces.verticalMedSmall,
-                      SizedBox(
-                        height: 70,
-                        child: Card(
-                          color: colors.cardBackground,
-                          shadowColor: AppColors.armyGreen2,
-                          elevation: 10,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                'Arabic language',
-                                style: texts.settingTitle,
-                              ),
-                              SizedBox(width: SizeConfig.w(20)),
-                              BlocBuilder<ThemeBloc, ThemeData>(
-                                builder: (context, state) {
-                                  return Switch(
-                                    activeColor: AppColors.oliveGreen,
-                                    value: state == AppTheme.darkTheme,
-                                    onChanged: (value) {
-                                      context.read<ThemeBloc>().add(
-                                        ChangeThemeEvent(),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      AppSpaces.verticalMedSmall,
+                      AppSpaces.verticalSmall,
+                      // SizedBox(
+                      //   height: 70,
+                      //   child: Card(
+                      //     color: colors.cardBackground,
+                      //     shadowColor: AppColors.armyGreen2,
+                      //     elevation: 10,
+                      //     child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      //       children: [
+                      //         Text(
+                      //           'Arabic language',
+                      //           style: texts.settingTitle,
+                      //         ),
+                      //         SizedBox(width: SizeConfig.w(20)),
+                      //         BlocBuilder<ThemeBloc, ThemeData>(
+                      //           builder: (context, state) {
+                      //             return Switch(
+                      //               activeColor: AppColors.oliveGreen,
+                      //               value: state == AppTheme.darkTheme,
+                      //               onChanged: (value) {
+                      //                 context.read<ThemeBloc>().add(
+                      //                   ChangeThemeEvent(),
+                      //                 );
+                      //               },
+                      //             );
+                      //           },
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      // AppSpaces.verticalSmall,
                       SizedBox(
                         height: 70,
                         child: Card(
@@ -151,28 +148,28 @@ class Settings extends StatelessWidget {
                         ),
                       ),
 
-                      ListTile(
-                        title: const Text('arabic').tr(),
-                        trailing: currentLang == 'ar'
-                            ? const Icon(Icons.check)
-                            : null,
-                        onTap: () {
-                          context.read<LocalizationBloc>().add(
-                            const ChangeLanguage(Locale('ar', 'AR')),
-                          );
-                        },
-                      ),
-                      ListTile(
-                        title: const Text('english').tr(),
-                        trailing: currentLang == 'en'
-                            ? const Icon(Icons.check)
-                            : null,
-                        onTap: () {
-                          context.read<LocalizationBloc>().add(
-                            const ChangeLanguage(Locale('en', 'US')),
-                          );
-                        },
-                      ),
+                      // ListTile(
+                      //   title: const Text('arabic').tr(),
+                      //   trailing: currentLang == 'ar'
+                      //       ? const Icon(Icons.check)
+                      //       : null,
+                      //   onTap: () {
+                      //     context.read<LocalizationBloc>().add(
+                      //       const ChangeLanguage(Locale('ar', 'AR')),
+                      //     );
+                      //   },
+                      // ),
+                      // ListTile(
+                      //   title: const Text('english').tr(),
+                      //   trailing: currentLang == 'en'
+                      //       ? const Icon(Icons.check)
+                      //       : null,
+                      //   onTap: () {
+                      //     context.read<LocalizationBloc>().add(
+                      //       const ChangeLanguage(Locale('en', 'US')),
+                      //     );
+                      //   },
+                      // ),
                     ],
                   ),
                 ),

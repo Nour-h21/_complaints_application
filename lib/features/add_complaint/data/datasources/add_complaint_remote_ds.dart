@@ -54,7 +54,7 @@ class AddComplaintRemoteDataSourceImpl implements AddComplaintRemoteDataSource {
       'addComplaint',
       data: formData,
        onSendProgress: onSendProgress,
-      options: Options(headers: {"Authorization": "Bearer 1|toq1dUi3Vbm4ui62dXRezchvRAYnZNoo6y1ydIKR2e677d00"}),
+      options: Options(headers: {"Authorization": "Bearer 1|MnRE2dCMFGRQWPXh4BfUWYDJKK1ez1dva4LDneN07463b92e"}),
     );
 
     if (response.statusCode != null &&

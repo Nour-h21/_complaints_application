@@ -1,5 +1,13 @@
 {
     "change language" : "change language",
      "arabic":"arabic",
-    "english":"english"
+    "english":"english",
+    "Skip":"Skip",
+    "Report any issue, in minutes":"Report any issue, in minutes",
+    "Your task is simple: describe the issue, pinpoint the location, and upload supporting files like photos. Your complaint goes directly to the concerned authority.":"Your task is simple: describe the issue, pinpoint the location, and upload supporting files like photos. Your complaint goes directly to the concerned authority.",
+    "Track your complaint, step by step":"Track your complaint, step by step",
+    "No more guessing! Follow your complaint's status in real-time. Know when it's received, reviewed, and resolved. We guarantee full transparency.":"No more guessing! Follow your complaint's status in real-time. Know when it's received, reviewed, and resolved. We guarantee full transparency.",
+    "All your complaints, organized in one place":"All your complaints, organized in one place",
+     "Review your complaint history, recall details of any case, and benefit from past solutions. Your government services are now easier.": "Review your complaint history, recall details of any case, and benefit from past solutions. Your government services are now easier.",
+     "Get Started":"Get Started"
 }

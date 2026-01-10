@@ -4,7 +4,6 @@ import 'package:complaints_application/core/constants/urls/assets_url.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/Theme/app_colors.dart';
 import '../../../../core/Theme/app_gradient.dart';
 import '../../../../core/Theme/app_text_style.dart';
 import '../../../../core/constants/colors/colors.dart';
@@ -146,7 +145,6 @@ class _MyComplaintsState extends State<MyComplaints> {
   Widget build(BuildContext context) {
     final gradients = Theme.of(context).extension<AppGradients>()!;
     final texts = Theme.of(context).extension<AppTextStyleTheme>()!;
-    final colors = Theme.of(context).extension<AppColorsTheme>()!;
     return BlocProvider(
       create: (context) => getIt<ComplaintsBloc>()..add(LoadComplaintsEvent()),
       child: Builder(

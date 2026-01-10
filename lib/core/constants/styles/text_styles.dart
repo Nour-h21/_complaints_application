@@ -62,6 +62,12 @@ class AppTextStyles {
     fontFamily: 'Arima'
    
   );
+  static TextStyle veryVerySmallWhite70Style = TextStyle(
+    fontSize: SizeConfig.h(12),
+    color: AppColors.primaryColor,
+    fontFamily: 'Arima'
+   
+  );
   
   static TextStyle smallwhiteStyle = TextStyle(
     fontSize: SizeConfig.sp(14),

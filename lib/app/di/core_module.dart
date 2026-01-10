@@ -40,8 +40,8 @@ dio.interceptors.add(
       final token = await getIt<StorageService>().getToken();
       if (token != null && token.isNotEmpty) {
         
-        options.headers['Authorization'] = 'Bearer $token';
-        //options.headers['Authorization'] = 'Bearer 6|L3CXDr1JS8SUmaVnEIcLu84JfecJX2cmf0Ez6GSP2e0a96c7';
+       // options.headers['Authorization'] = 'Bearer $token';
+        options.headers['Authorization'] = 'Bearer 1|MnRE2dCMFGRQWPXh4BfUWYDJKK1ez1dva4LDneN07463b92e';
       }
 
       return handler.next(options);
